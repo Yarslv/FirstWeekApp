@@ -5,4 +5,11 @@
     <string name="login_hint">Login</string>
     <string name="password_hint">Password</string>
     <string name="login_button_text">Login</string>
+    <string name="empty_error_text">Can not be EMPTY</string>
+    <string name="spaces_error_text">Can not contain SPACES</string>
+    <string name="password_length_error_text">Can not be less than 8 SYMBOLS</string>
+    <string name="small_letter_error_text">Must contains at least ONE SMALL LITERAL</string>
+    <string name="big_letter_error_text">Must contains at least ONE BIG LITERAL</string>
+    <string name="one_number_error_text">Must contains at least ONE NUMBER</string>
+    <string name="one_symbol_error_text">Must contains at least ONE SYMBOL</string>
 </resources>

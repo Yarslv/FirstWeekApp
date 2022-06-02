@@ -1,10 +1,10 @@
 package com.internship.firstweekapp.fragments.animationFragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.internship.firstweekapp.databinding.FragmentAnimationBinding
@@ -12,12 +12,8 @@ import com.internship.firstweekapp.databinding.FragmentAnimationBinding
 
 class AnimationFragment : Fragment() {
 
-    val model: AnimationFragmentViewModel by viewModels()
+    private val model: AnimationFragmentViewModel by viewModels()
     private lateinit var binding: FragmentAnimationBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -25,6 +25,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:text="@={model.model.login}"
             android:hint="@string/login_hint"
 
@@ -44,6 +45,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:text="@={model.model.password}"
             android:hint="@string/password_hint" />
     </com.google.android.material.textfield.TextInputLayout>

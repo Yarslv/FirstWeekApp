@@ -8,11 +8,13 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.internship.firstweekapp.R
+import kotlin.math.cos
+import kotlin.math.sin
 
 class AnimationFragmentViewModel :ViewModel() {
     var startX = 0f
     var startY = 0f
-    var isPaused = false
+    private var isPaused = false
 
     private lateinit var views: Array<View>
     private var animators = arrayListOf<ObjectAnimator>()
@@ -23,7 +25,7 @@ class AnimationFragmentViewModel :ViewModel() {
 
     fun moveToCenter(){
         val path = Path().apply {
-            lineTo(startX,startY)
+            moveTo(startX, startY)
         }
         for(element in views)
         ObjectAnimator.ofFloat(element, View.X, View.Y, path).apply {
@@ -36,31 +38,31 @@ class AnimationFragmentViewModel :ViewModel() {
             moveTo(startX,startY)
             var i = 0.0
             while(i < 2*3.14){
-                lineTo(startX+300* Math.cos(i).toFloat(), startY+300* Math.sin(i).toFloat())
+                lineTo(startX + 300 * cos(i).toFloat(), startY + 300 * sin(i).toFloat())
                 i += 0.01
             }
             lineTo(startX,startY)
         }
-        for(i in 0 until views.size){
+        for (i in views.indices) {
             animators.add(ObjectAnimator.ofFloat(views[i], View.X, View.Y, path).apply {
-            duration = 3000
-            startDelay = (i*250).toLong()
-            start()
-        })
+                duration = 3000
+                startDelay = (i * 250).toLong()
+                start()
+            })
         }
     }
 
-    fun pauseAnimation(){
+    fun pauseAnimation() {
         isPaused = true
-        for(i in animators.indices){
-            times.add(animators[i].currentPlayTime)
-            animators[i].cancel()
+        for (i in animators) {
+            times.add(i.currentPlayTime)
+            i.cancel()
         }
     }
 
     fun resumeAnimation(){
         if(isPaused) {
-            for (i in 0 until views.size) {
+            for (i in views.indices) {
                 animators[i].currentPlayTime = times[i]
                 animators[i].start()
             }
@@ -69,18 +71,17 @@ class AnimationFragmentViewModel :ViewModel() {
     }
 
     fun endAnimation(controller: NavController) {
-        var o: ObjectAnimator? = null
+        lateinit var objectAnimator: ObjectAnimator
         for (i in views){
-            o = ObjectAnimator.ofFloat(i, "alpha", 1f, 0f).apply {
+            objectAnimator = ObjectAnimator.ofFloat(i, "alpha", 1f, 0f).apply {
                 startDelay = 5000
                 start()
             }
         }
-        o?.addListener(object: AnimatorListenerAdapter() {
+        objectAnimator.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator?, isReverse: Boolean) {
                 controller.navigate(R.id.action_animationFragment_to_loginFragment)
             }
         })
     }
-
 }

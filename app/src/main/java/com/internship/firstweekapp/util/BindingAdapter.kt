@@ -1,4 +1,4 @@
-package com.internship.firstweekapp
+package com.internship.firstweekapp.util
 
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
