@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/firstScreenFragment"
+        android:name="com.internship.firstweekapp.ui.fragments.baseScreenFragment.BaseScreenFragment"
+        android:label="FirstScreenFragment"
+        tools:layout="@layout/fragment_base_screen">
+        <action
+            android:id="@+id/action_firstScreenFragment_to_secondScreenFragment"
+            app:destination="@id/firstScreenFragment"></action>
+
+        <argument
+            android:name="page"
+            app:argType="integer" />
+        <argument
+            android:name="result"
+            app:argType="string[]" />
+        <action
+            android:id="@+id/action_firstScreenFragment_to_resultFragment2"
+            app:destination="@id/resultFragment">
+            <argument
+                android:name="result"
+                app:argType="string[]" />
+
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.internship.firstweekapp.ui.fragments.resultFragment.ResultFragment"
+        android:label="ResultFragment">
+        <argument
+            android:name="result"
+            app:argType="string[]" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.internship.firstweekapp.ui.fragments.startFragment.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start">
+
+        <action
+            android:id="@+id/action_startFragment_to_firstScreenFragment"
+            app:destination="@id/firstScreenFragment" />
+        <argument
+            android:name="page"
+            app:argType="integer" />
+        <argument
+            android:name="result"
+            app:argType="string[]" />
+    </fragment>
+</navigation>

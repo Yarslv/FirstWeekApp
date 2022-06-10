@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FirstWeekApp</string>
+    <string name="edit_text_user_input_hint">Type your answer here…</string>
+    <string name="concate_for_result">Your result is %1$d/%2$d</string>
 </resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="vmodel"
+            type="com.internship.firstweekapp.ui.fragments.baseScreenFragment.BaseScreenFragmentViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".ui.fragments.baseScreenFragment.BaseScreenFragment"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:adapter="@{vmodel.adapter}"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:layoutManager="LinearLayoutManager"
+
+            tools:listitem="@layout/item_multi_answer" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="@{(View) -> vmodel.onClick()}"
+            android:text="Go Next"
+            android:contentDescription="@string/app_name" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

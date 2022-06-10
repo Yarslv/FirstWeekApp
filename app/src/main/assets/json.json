@@ -1,0 +1,102 @@
+{
+  "1": [
+    {
+      "type": "1",
+      "question": "1 + 1 = ?",
+      "answers": [
+        "3",
+        "57",
+        "2",
+        "-3"
+      ]
+    },
+    {
+      "type": "2",
+      "question": "sqrt(16) = ?",
+      "answers": [
+        "4",
+        "-4",
+        "32",
+        "61"
+      ]
+    },
+    {
+      "type": "3",
+      "question": "Instagram from ..."
+    },
+    {
+      "type": "2",
+      "question": "Which of the options below is not a car?",
+      "answers": [
+        "Legs",
+        "Bicycle",
+        "Scooter",
+        "Plane"
+      ]
+    }
+  ],
+  "2": [
+    {
+      "type": "3",
+      "question": "March, April, ..."
+    },
+    {
+      "type": "3",
+      "question": "Write aSdF"
+    },
+    {
+      "type": "1",
+      "question": "Hair consists of the same material as nails",
+      "answers": [
+        "Yes",
+        "No",
+        "I'm from Aluminum",
+        "No answer"
+      ]
+    }
+  ],
+  "3": [
+    {
+      "type": "2",
+      "question": "What dogs eat usually?",
+      "answers": [
+        "Cats",
+        "Trash",
+        "Dog Food",
+        "People Food"
+      ]
+    },
+    {
+      "type": "2",
+      "question": "Find the title of the serials",
+      "answers": [
+        "Love Death and Robots",
+        "Cowboy BoJack",
+        "BoJack Horseman",
+        "Love Death and Peoples"
+      ]
+    },
+    {
+      "type": "1",
+      "question": "Disney is corporation ...",
+      "answers": [
+        "cool",
+        "cartoons",
+        "evil",
+        "films"
+      ]
+    }
+  ],
+  "rightAnswers": [
+    3,
+    12,
+    "Meta",
+    1234,
+    "May",
+    "aSdF",
+    1,
+    34,
+    13,
+    3
+  ]
+}
