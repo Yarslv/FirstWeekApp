@@ -17,4 +17,10 @@
     <string name="canvas">Canvas</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="you_are_first">You are First</string>
+    <string name="you_are_second">You are Second</string>
+    <string name="your_figure_is_x">Your Figure is X</string>
+    <string name="your_figure_is_o">Your Figure is O</string>
+    <string name="play">Play</string>
+    <string name="play_cntnt_dscr">Play</string>
 </resources>

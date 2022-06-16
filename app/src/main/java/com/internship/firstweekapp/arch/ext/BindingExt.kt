@@ -15,7 +15,19 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.internship.firstweekapp.ui.game.ZerosCrossesGameBoardView
 import com.internship.firstweekapp.utils.AppUtils
+
+@BindingAdapter("android:userFigureIsCross")
+fun setUserFigure(view: ZerosCrossesGameBoardView, bool: Boolean) {
+    view.playerFigureIsCross = bool
+}
+
+@BindingAdapter("android:userIsFirst")
+fun setUserFirst(view: ZerosCrossesGameBoardView, bool: Boolean) {
+    view.playerIsFirst = bool
+}
+
 
 @BindingAdapter("circleImage", "placeholder", requireAll = false)
 fun ImageView.bindCircleImage(image: String?, placeholder: Drawable?) {
