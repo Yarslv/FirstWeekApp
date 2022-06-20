@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vmodel"
+            type="com.internship.firstweekapp.ui.settingFragment.SettingFragmentViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.settingFragment.SettingFragment">
+
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@={vmodel.playerIsCross}"
+                android:text="@string/your_figure_is_x" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/your_figure_is_o" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:visibility="invisible">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@={vmodel.playerIsFirst}"
+                android:text="@string/you_are_first" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/you_are_second" />
+        </RadioGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="@string/play"
+            android:onClick="@{() -> vmodel.onClick()}" />
+
+    </RelativeLayout>
+</layout>

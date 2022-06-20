@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vmodel"
+            type="com.internship.firstweekapp.ui.game.GameFragmentViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.game.GameFragment">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/hello_blank_fragment" />
+
+        <com.internship.firstweekapp.ui.game.ZerosCrossesGameBoardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/play_cntnt_dscr"
+            android:userFigureIsCross="@{vmodel.userCrosses}"
+            android:userIsFirst="@{vmodel.userFirst}"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </FrameLayout>
+</layout>

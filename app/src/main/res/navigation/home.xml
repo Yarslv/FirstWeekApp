@@ -2,9 +2,31 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/blankFragment">
+    app:startDestination="@id/settingFragment">
     <fragment
         android:id="@+id/blankFragment"
-        android:name="com.internship.firstweekapp.ui.dummy.BlankFragment"
-        android:label="BlankFragment" />
+        android:name="com.internship.firstweekapp.ui.game.GameFragment"
+        android:label="BlankFragment">
+        <argument
+            android:name="userFigure"
+            app:argType="boolean" />
+        <argument
+            android:name="userFirst"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.internship.firstweekapp.ui.settingFragment.SettingFragment"
+        android:label="SettingFragment">
+        <action
+            android:id="@+id/action_settingFragment_to_blankFragment"
+            app:destination="@id/blankFragment">
+            <argument
+                android:name="userFigure"
+                app:argType="boolean" />
+            <argument
+                android:name="userFirst"
+                app:argType="boolean" />
+        </action>
+    </fragment>
 </navigation>
