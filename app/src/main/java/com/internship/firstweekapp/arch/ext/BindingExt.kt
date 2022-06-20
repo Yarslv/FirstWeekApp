@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.internship.firstweekapp.ui.game.CellState
 import com.internship.firstweekapp.ui.game.ZerosCrossesGameBoardView
 import com.internship.firstweekapp.utils.AppUtils
 
@@ -28,6 +29,10 @@ fun setUserFirst(view: ZerosCrossesGameBoardView, bool: Boolean) {
     view.playerIsFirst = bool
 }
 
+@BindingAdapter("android:arr")
+fun setArr(view: ZerosCrossesGameBoardView, array: Array<Array<CellState>>) {
+    view.stateArr = array
+}
 
 @BindingAdapter("circleImage", "placeholder", requireAll = false)
 fun ImageView.bindCircleImage(image: String?, placeholder: Drawable?) {

@@ -27,12 +27,18 @@ class ZerosCrossesGameBoardView @JvmOverloads constructor(
         arrayOf(CellState.EMPTY, CellState.EMPTY, CellState.EMPTY)
     )
 
-    private var stateArr: Array<Array<CellState>>
+    var stateArr: Array<Array<CellState>>
         get() = _stateArr
         set(value) {
+
             _stateArr = value
             invalidate()
         }
+
+    init {
+        isClickable = true
+    }
+
 
     private lateinit var playerFigure: CellState
 
@@ -49,10 +55,7 @@ class ZerosCrossesGameBoardView @JvmOverloads constructor(
     var playerIsFirst = true
 
 
-    init {
-        isClickable = true
 
-    }
 
     private val mainPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
@@ -158,6 +161,15 @@ class ZerosCrossesGameBoardView @JvmOverloads constructor(
         }
     }
 
+    interface XYSender {
+        fun sendXYandType(x: Int, y: Int, type: CellState)
+    }
+
+    fun setListener(sender: XYSender) {
+        this.sender = sender
+    }
+
+    private lateinit var sender: XYSender
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
@@ -176,10 +188,15 @@ class ZerosCrossesGameBoardView @JvmOverloads constructor(
             else
                 2
 
-            if (playerFigureIsCross)
-                setCross(xx, yy)
-            else
-                setZero(xx, yy)
+            if (playerFigureIsCross) {
+//                setCross(xx, yy)
+                sender.sendXYandType(xx, yy, CellState.CROSS)
+            } else {
+                sender.sendXYandType(xx, yy, CellState.ZERO)
+            }
+
+
+
 
             computerTurn()
         }
@@ -197,9 +214,9 @@ class ZerosCrossesGameBoardView @JvmOverloads constructor(
             } while (stateArr[x][y] != CellState.EMPTY)
 
             if (playerFigureIsCross)
-                setZero(x, y)
+                sender.sendXYandType(x, y, CellState.CROSS)
             else
-                setCross(x, y)
+                sender.sendXYandType(x, y, CellState.ZERO)
         }
     }
 
@@ -253,6 +270,6 @@ class ZerosCrossesGameBoardView @JvmOverloads constructor(
             h / 100 * (15f + 2.5f)
         )
         else arrayOf()
-
     }
 }
+

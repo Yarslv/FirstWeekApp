@@ -15,6 +15,14 @@ class GameFragment : BaseFragment<FragmentGameBinding>(R.layout.fragment_game) {
         viewModel.isUserFirst = args.userFirst
         viewModel.isUserCrosses = args.userFigure
         binding.vmodel = viewModel
+
+        binding.game.setListener(object : ZerosCrossesGameBoardView.XYSender {
+            override fun sendXYandType(x: Int, y: Int, type: CellState) {
+                viewModel.setInArr(x, y, type)
+            }
+        }
+        )
+
     }
 
 }

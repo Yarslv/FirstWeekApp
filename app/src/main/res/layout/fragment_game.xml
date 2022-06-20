@@ -20,9 +20,11 @@
             android:text="@string/hello_blank_fragment" />
 
         <com.internship.firstweekapp.ui.game.ZerosCrossesGameBoardView
+            android:id="@+id/game"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/play_cntnt_dscr"
+            android:arr="@{vmodel.game.stateArr}"
             android:userFigureIsCross="@{vmodel.userCrosses}"
             android:userIsFirst="@{vmodel.userFirst}"
             tools:ignore="SpeakableTextPresentCheck" />
