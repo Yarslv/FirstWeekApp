@@ -8,7 +8,7 @@
 
         <variable
             name="vmodel"
-            type="com.internship.firstweekapp.ui.wifi_fragment.ViewModel" />
+            type="com.internship.firstweekapp.ui.wifi_fragment.WiFisFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

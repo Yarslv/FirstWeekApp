@@ -13,7 +13,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Integer.min
 
 class WiFisFragment : BaseFragment<FragmentWifisBinding>(R.layout.fragment_wifis) {
-    override val viewModel: ViewModel by viewModel()
+    override val viewModel: WiFisFragmentViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
