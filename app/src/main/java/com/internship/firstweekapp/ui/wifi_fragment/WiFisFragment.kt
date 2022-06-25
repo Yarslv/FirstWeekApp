@@ -2,15 +2,16 @@ package com.internship.firstweekapp.ui.wifi_fragment
 
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
+import androidx.navigation.fragment.findNavController
 import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.BaseFragment
 import com.internship.firstweekapp.databinding.FragmentWifisBinding
+import com.internship.firstweekapp.databinding.WifisCircleBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.lang.Integer.min
 
 class WiFisFragment : BaseFragment<FragmentWifisBinding>(R.layout.fragment_wifis) {
     override val viewModel: WiFisFragmentViewModel by viewModel()
@@ -22,32 +23,48 @@ class WiFisFragment : BaseFragment<FragmentWifisBinding>(R.layout.fragment_wifis
         checkPermission()
 
         viewModel.manager.receiver.receive().observe(viewLifecycleOwner) {
-            viewModel.list.postValue(it)
-        }
 
-        viewModel.getList().observe(viewLifecycleOwner) { it ->
-
+            val arr = arrayListOf<View>()
             val angleOne = CIRCLE_DEGREE_TOTAL / it.size
-            val radiusOne = min(binding.constraint.width, binding.constraint.height) / 30 / 2
 
             it.forEachIndexed { index, element ->
-                binding.constraint.addView(
-                    AppCompatTextView(requireContext()).apply {
-                        text = element.name
-                        id = View.generateViewId()
-                        ConstraintLayout.LayoutParams(
-                            ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                            ConstraintLayout.LayoutParams.WRAP_CONTENT
-                        ).apply {
-                            circleAngle = angleOne * index
-                            circleConstraint = binding.centerView.id
-                            circleRadius =
-                                if (element.freq == -FREQUENCY_RANGE_MAX) radiusOne * FREQUENCY_RANGE_MAX else element.freq * radiusOne
-                        }.let { layoutParams = it }
+                arr.add(
+                    with(WifisCircleBinding.inflate(LayoutInflater.from(requireContext()))) {
+                        this.vmodel = CircleModel(element).apply {
+                            singleLiveEvent.observe(viewLifecycleOwner) { dir ->
+                                findNavController().navigate(dir)
+                            }
+                        }
+                        this.root.apply {
+                            id = View.generateViewId()
+                            ConstraintLayout.LayoutParams(
+                                DIAMETER, DIAMETER
+                            ).apply {
+                                circleAngle = angleOne * index
+                                circleConstraint = binding.centerView.id
+                                circleRadius = element.level * 2 + 200 + DIAMETER
+                            }.let { cnstrParam ->
+                                alpha = 0f
+                                layoutParams = cnstrParam
+                                animate().alpha(1f).duration = ANIM_DURATION_MS
+                            }
+                        }
                     }
                 )
             }
+
+
+
+            viewModel.list.postValue(arr)
         }
+
+        viewModel.getList().observe(viewLifecycleOwner) {
+            for (i in it) {
+                binding.constraint.addView(i)
+            }
+        }
+
+
     }
 
     private fun checkPermission() {
@@ -80,6 +97,7 @@ class WiFisFragment : BaseFragment<FragmentWifisBinding>(R.layout.fragment_wifis
 
     companion object {
         const val CIRCLE_DEGREE_TOTAL = 360f
-        const val FREQUENCY_RANGE_MAX = 30
+        const val DIAMETER = 100
+        const val ANIM_DURATION_MS = 1500L
     }
 }

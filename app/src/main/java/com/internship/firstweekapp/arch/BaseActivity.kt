@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes private val resId: Int) :
     AppCompatActivity() {
 
-    protected lateinit var binding: T
+    private lateinit var binding: T
     protected abstract val viewModel: BaseViewModel
     protected abstract val navController: NavController
     protected open fun setObservers() {}
@@ -31,7 +31,7 @@ abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes private val resId: I
         navController.navigate(resId, args)
     }
 
-    protected fun showToast(msg: String) {
+    private fun showToast(msg: String) {
         Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
     }
 }

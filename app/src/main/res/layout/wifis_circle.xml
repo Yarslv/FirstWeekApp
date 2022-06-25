@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vmodel"
+            type="com.internship.firstweekapp.ui.wifi_fragment.CircleModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounder"
+        android:onClick="@{() -> vmodel.onClick()}">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textVw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:maxLength="5"
+            android:text="@{vmodel.result.SSID}"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="WiFi" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

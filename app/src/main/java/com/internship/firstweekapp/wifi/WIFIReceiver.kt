@@ -3,24 +3,20 @@ package com.internship.firstweekapp.wifi
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.net.wifi.ScanResult
 import android.net.wifi.WifiManager
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-class WIFIReceiver(var wifiManager: WifiManager) : BroadcastReceiver() {
-    private var _receive = MutableLiveData<ArrayList<Receive>>()
+class WIFIReceiver(private var wifiManager: WifiManager) : BroadcastReceiver() {
+    private var _receive = MutableLiveData<ArrayList<ScanResult>>()
 
-    fun receive(): LiveData<ArrayList<Receive>> {
+    fun receive(): LiveData<ArrayList<ScanResult>> {
         return _receive
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        val arr = arrayListOf<Receive>()
-        for (i in wifiManager.scanResults) {
-            arr.add(Receive(i.SSID, i.level))
-        }
-        _receive.postValue(arr)
+        _receive.postValue(ArrayList(wifiManager.scanResults))
+        wifiManager.startScan()
     }
 }
-
-data class Receive(var name: String, var freq: Int)

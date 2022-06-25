@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dialog_dimen">500dp</dimen>
+    <dimen name="dialog_textview_margin">20dp</dimen>
+    <dimen name="text_size">10sp</dimen>
+</resources>

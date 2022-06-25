@@ -10,9 +10,26 @@
         android:name="com.internship.firstweekapp.ui.splash.SplashFragment"
         android:label="SplashFragment" />
     <fragment
-        android:id="@+id/blankFragment"
+        android:id="@+id/wifisFragment"
         android:name="com.internship.firstweekapp.ui.wifi_fragment.WiFisFragment"
         android:label="fragment_wifis"
-        tools:layout="@layout/fragment_wifis" />
+        tools:layout="@layout/fragment_wifis">
+        <action
+            android:id="@+id/action_wifisFragment_to_dialogFragment"
+            app:destination="@id/dialogFragment">
+            <argument
+                android:name="info"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <dialog
+        android:id="@+id/dialogFragment"
+        android:name="com.internship.firstweekapp.ui.dialog.DialogFragment"
+        android:label="fragment_dialog"
+        tools:layout="@layout/fragment_dialog">
+        <argument
+            android:name="info"
+            app:argType="string" />
+    </dialog>
 
 </navigation>
