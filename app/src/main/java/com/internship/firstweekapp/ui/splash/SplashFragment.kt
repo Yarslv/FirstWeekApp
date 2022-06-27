@@ -2,7 +2,6 @@ package com.internship.firstweekapp.ui.splash
 
 import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.BaseFragment
-import com.internship.firstweekapp.arch.ext.navigate
 import com.internship.firstweekapp.databinding.SplashFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -17,7 +16,7 @@ class SplashFragment : BaseFragment<SplashFragmentBinding>(R.layout.splash_fragm
     }
 
     private fun showLogInScreen() {
-        navigate(R.id.wifisFragment, clearStack = true)
+        //here navigate to some destination with clearStack = true by navigate(dest, clearStack = true)
     }
 
 }
