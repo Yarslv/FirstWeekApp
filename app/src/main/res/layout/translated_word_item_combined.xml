@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="flagFrom, original, to, translated, flagTo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/flagFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="a" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/flagTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="a"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="to"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/original"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="d"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/translated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="a"
+            tools:ignore="MissingConstraints" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

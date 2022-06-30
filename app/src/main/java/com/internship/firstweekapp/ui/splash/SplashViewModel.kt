@@ -2,16 +2,17 @@ package com.internship.firstweekapp.ui.splash
 
 import com.internship.firstweekapp.arch.BaseViewModel
 import com.internship.firstweekapp.arch.lifecycle.SingleLiveEvent
-import kotlinx.coroutines.delay
+import com.internship.firstweekapp.dict.Dictionary
 
-class SplashViewModel : BaseViewModel() {
+class SplashViewModel(private var dictionary: Dictionary) : BaseViewModel() {
+
 
     val initEvent = SingleLiveEvent<Boolean>()
 
     init {
         onLoading(true)
         launch {
-            delay(1000)
+            dictionary.read()
             initEvent.postValue(true)
         }
     }
