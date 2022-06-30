@@ -32,7 +32,7 @@ class TranslatorFragmentViewModel(
         val new = mutableSetOf("pl===" + model.text + "===" + answr[0] + "===ua")
         if (old!!.isNotEmpty()) {
             new += old as MutableSet
-            if (new.size > 2) new.remove(new.last())
+            if (new.size > 16) new.remove(new.last())
         }
         model.elem.set(new.toTypedArray())
         preferenceStorage.save("stringSet", new)
