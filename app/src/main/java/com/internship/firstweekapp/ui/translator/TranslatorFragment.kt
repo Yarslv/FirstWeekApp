@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.BaseFragment
 import com.internship.firstweekapp.databinding.FragmentTranslatorBinding
+import com.internship.firstweekapp.dict.State
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TranslatorFragment : BaseFragment<FragmentTranslatorBinding>(R.layout.fragment_translator) {
@@ -14,13 +15,22 @@ class TranslatorFragment : BaseFragment<FragmentTranslatorBinding>(R.layout.frag
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.lifecycleOwner = viewLifecycleOwner
         binding.vmodel = viewModel
-        viewModel.navEvent.observe(viewLifecycleOwner) {
+
+        viewModel.navEvent.observe(viewLifecycleOwner) { it ->
             if (it) {
+                val arr = arrayListOf<String>()
+                viewModel.dictionary.get(viewModel.model.text).forEach {
+                    if (viewModel.dictionary.state == State.STANDARD) {
+                        arr.add(it.wordTrans)
+                    } else {
+                        arr.add(it.wordOrig)
+                    }
+                }
                 val dir =
                     TranslatorFragmentDirections.actionTranslatorFragmentToTranslatedWordFragment(
-                        viewModel.dictionary.get(viewModel.model.text).toTypedArray()
+                        arr.toTypedArray()
+
                     )
                 findNavController().navigate(dir)
             }

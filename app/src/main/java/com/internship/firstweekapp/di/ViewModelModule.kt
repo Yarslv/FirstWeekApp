@@ -10,6 +10,6 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { SplashViewModel(get()) }
     viewModel { MainViewModel() }
-    viewModel { TranslatorFragmentViewModel(get(), get()) }
-    viewModel { TranslatedWordDialogFragmentViewModel() }
+    viewModel { TranslatorFragmentViewModel(get(), get(), get()) }
+    viewModel { args -> TranslatedWordDialogFragmentViewModel(args.get()) }
 }

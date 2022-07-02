@@ -20,6 +20,8 @@
             android:id="@+id/textInputLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:errorEnabled="true"
+            android:error="@{vmodel.model.error}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@id/toFromButton"
@@ -29,7 +31,8 @@
                 android:text="@={vmodel.model.text}"
                 android:id="@+id/textInputEditText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:onTextChanged="@{() -> vmodel.clearError()}"
                 android:hint="@string/type" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -37,6 +40,8 @@
             android:id="@+id/toFromButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textSize="12sp"
+            tools:text="ukr to pol"
             android:text="@{vmodel.model.langLabel}"
             android:onClick="@{() -> vmodel.changeLanguage()}"
             app:layout_constraintEnd_toEndOf="@id/convert"

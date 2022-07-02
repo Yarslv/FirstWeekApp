@@ -1,17 +1,22 @@
 package com.internship.firstweekapp.ui.translator
 
+import android.content.Context
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableField
 import com.internship.firstweekapp.BR
+import com.internship.firstweekapp.Constants
+import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.BaseViewModel
 import com.internship.firstweekapp.arch.data.repository.PreferenceStorage
 import com.internship.firstweekapp.arch.lifecycle.SingleLiveEvent
 import com.internship.firstweekapp.dict.Dictionary
+import com.internship.firstweekapp.dict.State
 
 class TranslatorFragmentViewModel(
+    var context: Context,
     var dictionary: Dictionary,
-    var preferenceStorage: PreferenceStorage
+    private var preferenceStorage: PreferenceStorage
 ) : BaseViewModel() {
 
     var model = ObservableModel()
@@ -24,24 +29,75 @@ class TranslatorFragmentViewModel(
 
     fun translate() {
         val answr = dictionary.get(model.text)
-        //showing error not work
-        if (answr.isEmpty()) return
 
-        val old = preferenceStorage.getStringSet("stringSet")
-        //pl ua marking not work
-        val new = mutableSetOf("pl===" + model.text + "===" + answr[0] + "===ua")
-        if (old!!.isNotEmpty()) {
-            new += old as MutableSet
-            if (new.size > 16) new.remove(new.last())
+        if (model.text.isEmpty()) {
+            model.error.set(context.getString(R.string.nothing_input_msg))
+            return
         }
-        model.elem.set(new.toTypedArray())
-        preferenceStorage.save("stringSet", new)
+
+        if (answr.isEmpty()) {
+            model.error.set(context.getString(R.string.no_found_msg))
+            return
+        }
+
+        val old = mutableSetOf<RecyclerItemModel>()
+
+        preferenceStorage.getStringSet(Constants.SHARED_PREF_STRING_SET_NAME)?.forEach {
+            old.add(RecyclerItemModel(it))
+        }
+
+
+        val new = if (dictionary.state == State.STANDARD)
+            mutableSetOf(
+                RecyclerItemModel(
+                    context.getString(
+                        R.string.concate_four,
+                        dictionary.from,
+                        model.text,
+                        answr[0].wordTrans,
+                        dictionary.to
+                    )
+                )
+            )
+        else
+            mutableSetOf(
+                RecyclerItemModel(
+                    context.getString(
+                        R.string.concate_four,
+                        dictionary.to,
+                        model.text,
+                        answr[0].wordOrig,
+                        dictionary.from
+                    )
+                )
+            )
+        if (old.isNotEmpty()) {
+            new += old
+            if (new.size > Constants.MAX_LIST_WORD_MEMORY) new.remove(new.last())
+        }
+
+        model.elem.set(new)
+        val newRaw = mutableSetOf<String>()
+        new.forEach {
+            newRaw.add(it.from + Constants.SEPARATOR + it.originalWord + Constants.SEPARATOR + it.translatedWord + Constants.SEPARATOR + it.to)
+        }
+        preferenceStorage.save(Constants.SHARED_PREF_STRING_SET_NAME, newRaw)
         navEvent.postValue(true)
     }
 
+    fun clearError() {
+        model.error.set("")
+    }
 
     inner class ObservableModel : BaseObservable() {
         var text = ""
+
+        @Bindable
+        var error = ObservableField("")
+            set(value) {
+                field = value
+                notifyPropertyChanged(BR.error)
+            }
 
         @Bindable
         var langLabel = ObservableField(dictionary.getDictLabel())
@@ -51,10 +107,22 @@ class TranslatorFragmentViewModel(
             }
 
         @Bindable
-        var elem = ObservableField(preferenceStorage.getStringSet("stringSet")!!.toTypedArray())
+        var elem = ObservableField<Set<RecyclerItemModel>>(setOf())
             set(value) {
                 field = value
-                notifyPropertyChanged(BR.vmodel)
+                notifyPropertyChanged(BR.elem)
             }
     }
+}
+
+data class RecyclerItemModel(var rawData: String) {
+    private var rawDataSplit = rawData.split(Constants.SEPARATOR)
+    val from: String
+        get() = rawDataSplit[0]
+    val originalWord: String
+        get() = rawDataSplit[1]
+    val translatedWord: String
+        get() = rawDataSplit[2]
+    val to: String
+        get() = rawDataSplit[3]
 }
