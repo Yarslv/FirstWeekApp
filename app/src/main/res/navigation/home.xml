@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home"
     app:startDestination="@id/splashFragment">
 
@@ -8,5 +9,29 @@
         android:id="@+id/splashFragment"
         android:name="com.internship.firstweekapp.ui.splash.SplashFragment"
         android:label="SplashFragment" />
+    <fragment
+        android:id="@+id/translatorFragment"
+        android:name="com.internship.firstweekapp.ui.translator.TranslatorFragment"
+        android:label="fragment_translator"
+        tools:layout="@layout/fragment_translator">
+        <action
+            android:id="@+id/action_translatorFragment_to_translatedWordFragment"
+            app:destination="@id/translatedWordFragment">
+
+            <argument
+                android:name="words"
+                app:argType="string[]" />
+
+        </action>
+    </fragment>
+    <dialog
+        android:id="@+id/translatedWordFragment"
+        android:name="com.internship.firstweekapp.ui.translator.dialog.TranslatedWordDialog"
+        android:label="TranslatedWordFragment">
+        <argument
+            android:name="words"
+            app:argType="string[]" />
+
+    </dialog>
 
 </navigation>

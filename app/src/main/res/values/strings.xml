@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">FirstWeekApp</string>
-
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pl_to_ua">🇵🇱 to 🇺🇦</string>
+    <string name="ua_to_pl">🇺🇦 to 🇵🇱</string>
+    <string name="type">Type…</string>
+    <string name="translate_button_text">Translate</string>
+    <string name="no_found_msg">Not found</string>
+    <string name="nothing_input_msg">Nothing inputted</string>
+    <string name="to_text">to</string>
+    <string name="concate_four">%1s===%2s===%3s===%4s</string>
+    <string name="concate_two_to">%1s to %2s</string>
 </resources>
