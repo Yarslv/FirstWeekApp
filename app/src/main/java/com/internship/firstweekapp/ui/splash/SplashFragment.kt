@@ -1,5 +1,6 @@
 package com.internship.firstweekapp.ui.splash
 
+import androidx.navigation.fragment.findNavController
 import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.BaseFragment
 import com.internship.firstweekapp.databinding.SplashFragmentBinding
@@ -16,7 +17,10 @@ class SplashFragment : BaseFragment<SplashFragmentBinding>(R.layout.splash_fragm
     }
 
     private fun showLogInScreen() {
-        //here navigate to some destination with clearStack = true by navigate(dest, clearStack = true)
+        val a = SplashFragmentDirections.actionSplashFragmentToGameFragment(0, 0)
+        findNavController().navigate(a)
     }
+
+
 
 }

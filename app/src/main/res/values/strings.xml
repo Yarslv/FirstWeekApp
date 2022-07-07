@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">FirstWeekApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_res">open</string>
+    <string name="close_res">open</string>
+    <string name="restart_title">Restart</string>
+    <string name="quit_title">Quit</string>
+    <string name="music_title">Music</string>
 
 </resources>
