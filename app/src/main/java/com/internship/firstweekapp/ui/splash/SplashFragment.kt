@@ -12,15 +12,11 @@ class SplashFragment : BaseFragment<SplashFragmentBinding>(R.layout.splash_fragm
 
     override fun setObservers() {
         viewModel.initEvent.observe(this) {
-            if (it) showLogInScreen()
+            if (it) findNavController().navigate(
+                SplashFragmentDirections.actionSplashFragmentToGameFragment(
+                    "start"
+                )
+            )
         }
     }
-
-    private fun showLogInScreen() {
-        val a = SplashFragmentDirections.actionSplashFragmentToGameFragment(0, 0)
-        findNavController().navigate(a)
-    }
-
-
-
 }

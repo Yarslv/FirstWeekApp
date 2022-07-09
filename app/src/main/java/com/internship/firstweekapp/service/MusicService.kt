@@ -1,4 +1,4 @@
-package com.internship.firstweekapp.ui.test
+package com.internship.firstweekapp.service
 
 import android.app.Service
 import android.content.Intent
@@ -28,5 +28,4 @@ class MusicService : Service() {
         player.stop()
         super.onDestroy()
     }
-
 }

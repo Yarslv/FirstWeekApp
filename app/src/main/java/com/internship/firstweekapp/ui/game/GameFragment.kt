@@ -1,4 +1,4 @@
-package com.internship.firstweekapp.ui.test
+package com.internship.firstweekapp.ui.game
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,13 +11,17 @@ import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.BaseFragment
 import com.internship.firstweekapp.data.Game
 import com.internship.firstweekapp.databinding.FragmentGameBinding
+import com.internship.firstweekapp.service.MusicService
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import kotlin.system.exitProcess
 
 
 class GameFragment : BaseFragment<FragmentGameBinding>(R.layout.fragment_game) {
 
     private val navArgs: GameFragmentArgs by navArgs()
+    private val game: Game by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,17 +45,29 @@ class GameFragment : BaseFragment<FragmentGameBinding>(R.layout.fragment_game) {
             when (it.itemId) {
                 R.id.restart -> findNavController().navigate(
                     GameFragmentDirections.actionGameFragmentSelf(
-                        0,
-                        0
+                        getString(R.string.start_scene)
                     )
                 )
-                R.id.quit -> requireActivity().finish()
+                R.id.quit -> {
+                    android.os.Process.killProcess(android.os.Process.myPid())
+                    exitProcess(1)
+                }
             }
             true
+        }
+
+        viewModel.sli.observe(viewLifecycleOwner) {
+            findNavController().navigate(
+                GameFragmentDirections.actionGameFragmentSelf(
+                    it
+                )
+            )
         }
     }
 
     override val viewModel: GameFragmentViewModel by viewModel {
-        parametersOf(Game.scenes[navArgs.set])
+        parametersOf(game.scenes[navArgs.sceneSetName])
     }
+
+
 }
