@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="orange">#cc6404</color>
+    <color name="label_Sylvie_color">#c8ffc8</color>
+    <color name="label_Me_color">#c8c8ff</color>
 </resources>

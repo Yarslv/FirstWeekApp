@@ -1,5 +1,6 @@
 package com.internship.firstweekapp.ui.splash
 
+import androidx.navigation.fragment.findNavController
 import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.BaseFragment
 import com.internship.firstweekapp.databinding.SplashFragmentBinding
@@ -11,12 +12,11 @@ class SplashFragment : BaseFragment<SplashFragmentBinding>(R.layout.splash_fragm
 
     override fun setObservers() {
         viewModel.initEvent.observe(this) {
-            if (it) showLogInScreen()
+            if (it) findNavController().navigate(
+                SplashFragmentDirections.actionSplashFragmentToGameFragment(
+                    "start"
+                )
+            )
         }
     }
-
-    private fun showLogInScreen() {
-        //here navigate to some destination with clearStack = true by navigate(dest, clearStack = true)
-    }
-
 }
