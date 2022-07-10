@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="icon_background">#E3D453</color>
-</resources>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid
+        android:name="icon_background"
+        android:color="#e3d453" />
+</shape>
