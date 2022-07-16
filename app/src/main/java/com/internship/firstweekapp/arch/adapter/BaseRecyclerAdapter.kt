@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseRecyclerAdapter<VH : RecyclerView.ViewHolder, E> : RecyclerView.Adapter<VH>() {
 
-    private val adapterItems = ArrayList<E>()
+    protected val adapterItems = ArrayList<E>()
 
     protected open fun getDiffCallback(newItems: List<E>): DiffUtil.Callback {
         return AbstractDiffCallback(newItems, adapterItems)

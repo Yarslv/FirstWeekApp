@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="app_color">?attr/colorPrimary</color>
+    <color name="day_names_color">#333333</color>
+    <color name="transparent">#00000000</color>
+    <color name="text_color_calendar">#666666</color>
+    <color name="main_text">#10275a</color>
+    <color name="gray_text">#333333</color>
+    <color name="blank_fragment_text">#575757</color>
+    <color name="search_text">#c8cdd9</color>
+    <color name="so_main_text">#525f77</color>
+    <color name="text_msg_no_task">#575757</color>
 </resources>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vmodel"
+            type="com.internship.firstweekapp.ui.tabs.TabsFragmentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:userInput="@{false}"
+            app:layout_constraintStart_toStartOf="parent"
+            android:currentTab="@{vmodel.model.currentTab}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/navConstraint" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/navConstraint"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/search_view_round_white"
+            android:paddingStart="28dp"
+            android:elevation="8dp"
+            android:shadowColor="#f1f7ff"
+            android:paddingEnd="28dp"
+            app:layout_constraintTop_toTopOf="@id/bottom1Guideline"
+            app:layout_constraintBottom_toBottomOf="@id/bottomGuideline"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/homeBtn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:paddingStart="3.3dp"
+                android:paddingTop="2.6dp"
+                android:paddingEnd="3.3dp"
+                android:paddingBottom="2.dp"
+                android:onClick="@{View -> vmodel.changeTab(View)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@{vmodel.model.current[0] ? @drawable/ic_home_selected : @drawable/ic_home}" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="2dp"
+                android:textSize="32sp"
+                android:visibility="@{vmodel.model.current[0] ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@id/homeBtn"
+                app:layout_constraintEnd_toEndOf="@id/homeBtn"
+                app:layout_constraintTop_toBottomOf="@id/homeBtn"
+                android:background="@color/app_color" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/documentBtn"
+                android:onClick="@{View -> vmodel.changeTab(View)}"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/addBtn"
+                app:layout_constraintStart_toEndOf="@id/homeBtn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@{vmodel.model.current[1] ? @drawable/ic_document_selected : @drawable/ic_document}" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="2dp"
+                android:textSize="32sp"
+                android:visibility="@{vmodel.model.current[1] ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@id/documentBtn"
+                app:layout_constraintEnd_toEndOf="@id/documentBtn"
+                app:layout_constraintTop_toBottomOf="@id/documentBtn"
+                android:background="@color/app_color" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/addBtn"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_margin="5dp"
+                app:layout_constraintDimensionRatio="1:1"
+                android:onClick="@{() -> vmodel.addTask()}"
+                android:background="@drawable/button_korner"
+                app:srcCompat="@drawable/ic_baseline_add_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/activityBtn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:paddingStart="3dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="3dp"
+                android:paddingBottom="4dp"
+                android:onClick="@{View -> vmodel.changeTab(View)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/folderBtn"
+                app:layout_constraintStart_toEndOf="@id/addBtn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@{vmodel.model.current[2] ? @drawable/ic_activity_selected : @drawable/ic_activity}" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="2dp"
+                android:textSize="32sp"
+                android:visibility="@{vmodel.model.current[2] ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@id/activityBtn"
+                app:layout_constraintEnd_toEndOf="@id/activityBtn"
+                app:layout_constraintTop_toBottomOf="@id/activityBtn"
+                android:background="@color/app_color" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/folderBtn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="3.3dp"
+                android:onClick="@{View -> vmodel.changeTab(View)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@{vmodel.model.current[3] ? @drawable/ic_folder_selected : @drawable/ic_folder}" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="2dp"
+                android:textSize="32sp"
+                android:visibility="@{vmodel.model.current[3] ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@id/folderBtn"
+                app:layout_constraintEnd_toEndOf="@id/folderBtn"
+                app:layout_constraintTop_toBottomOf="@id/folderBtn"
+                android:background="@color/app_color" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9375" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.0625" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom1Guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.87" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottomGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.963" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

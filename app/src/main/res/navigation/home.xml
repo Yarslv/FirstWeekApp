@@ -2,9 +2,39 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/mainScreen2">
-    <activity
-        android:id="@+id/mainScreen2"
-        android:name="com.internship.firstweekapp.ui.main.MainScreen"
-        android:label="MainScreen" />
+    app:startDestination="@id/tabsFragment">
+    <action
+        android:id="@+id/show_calendar"
+        app:destination="@id/calendarDialogFragment" />
+    <action
+        android:id="@+id/show_time"
+        app:destination="@id/timeDialogFragment" />
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.internship.firstweekapp.ui.add_task.AddTaskFragment"
+        android:label="AddTaskFragment">
+        <action
+            android:id="@+id/action_addTaskFragment_to_addTagDialogFragment"
+            app:destination="@id/addTagDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/calendarDialogFragment"
+        android:name="com.internship.firstweekapp.ui.calendar_dialog.CalendarDialogFragment"
+        android:label="CalendarDialogFragment" />
+    <dialog
+        android:id="@+id/timeDialogFragment"
+        android:name="com.internship.firstweekapp.ui.time_dialog.TimeDialogFragment"
+        android:label="TimeDialogFragment" />
+    <dialog
+        android:id="@+id/addTagDialogFragment"
+        android:name="com.internship.firstweekapp.ui.add_tag.AddTagDialogFragment"
+        android:label="AddTagDialogFragment" />
+    <fragment
+        android:id="@+id/tabsFragment"
+        android:name="com.internship.firstweekapp.ui.tabs.TabsFragment"
+        android:label="TabsFragment">
+        <action
+            android:id="@+id/action_tabsFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
 </navigation>
