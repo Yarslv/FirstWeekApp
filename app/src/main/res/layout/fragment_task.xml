@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/searchCnstrLt"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/search_view_round"
+            app:layout_constraintBottom_toBottomOf="@id/searchBottomGuideline"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
+            app:layout_constraintTop_toTopOf="@id/topGuideline">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/searchImgVw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="27dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_search" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:textColor="@color/search_text"
+                android:textSize="19sp"
+                app:layout_constraintStart_toEndOf="@id/searchImgVw"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:backgroundTint="@color/transparent"
+                android:hint="@string/search_hint" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/deleteSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="27dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_iconly_bold_close_square" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/taskTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_text"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:text="@string/task_tag"
+            android:layout_marginBottom="-8dp"
+            app:layout_constraintBottom_toBottomOf="@id/taskTextGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
+            tools:text="Task" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/main_text"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:text="@string/today_tag"
+            app:layout_constraintBottom_toBottomOf="@id/todayTextGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
+            tools:text="Today" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="18.6dp"
+            android:layout_height="18.6dp"
+            android:layout_marginEnd="7dp"
+            app:layout_constraintEnd_toStartOf="@id/mounthText"
+
+            app:layout_constraintBottom_toBottomOf="@id/taskTextGuideline"
+            app:srcCompat="@drawable/ic_calendar" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mounthText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="33dp"
+            android:textColor="@color/so_main_text"
+            android:textSize="16sp"
+            android:text="@string/calendar_text"
+            app:layout_constraintBottom_toBottomOf="@id/taskTextGuideline"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            tools:text="August" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/calendarImg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="@id/imgBottomGuideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgTopGuideline"
+            app:srcCompat="@drawable/ic_calendar_img" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/text_msg_no_task"
+            android:textSize="19sp"
+            android:text="@string/no_task_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bottomTextGuideline"
+            tools:text="You don’t have any schedule today.\nTap the plus button to create new to-do." />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.0625" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9375" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/searchBottomGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1172" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/taskTextGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1851" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/imgTopGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4259" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/imgBottomGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rclrTopGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2160" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rclrBottomGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.302" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottomTextGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/todayTextGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3580" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/topGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.055" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

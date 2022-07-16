@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.internship.firstweekapp.ui.time_dialog.TimeDialogFragmentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="336dp"
+            android:layout_height="451dp"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/editTimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/edit_time_tag"
+            android:textColor="@color/main_text"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/hoursPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTimeTextView"
+            app:np_dividerColor="@color/transparent"
+            app:np_fadingEdgeEnabled="false"
+            app:np_formatter="@string/allign_zero"
+            app:np_max="23"
+            app:np_min="0"
+            app:np_selectedTextColor="@color/app_color"
+            app:np_textColor="#bfbfdf"
+            app:np_textSize="27sp"
+            app:np_wheelItemCount="5" />
+
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/minutesPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/hoursPicker"
+            app:layout_constraintEnd_toStartOf="@id/mTextView"
+            app:layout_constraintTop_toTopOf="@id/hoursPicker"
+            app:np_dividerColor="@color/transparent"
+            app:np_fadingEdgeEnabled="false"
+            app:np_formatter="@string/allign_zero"
+            app:np_max="59"
+            app:np_min="0"
+            app:np_selectedTextColor="@color/app_color"
+            app:np_textColor="#bfbfdf"
+            app:np_textSize="27sp"
+            app:np_wheelItemCount="5" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/hTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/h_label"
+            android:textColor="@color/app_color"
+            android:textSize="29sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/hoursPicker"
+            app:layout_constraintStart_toEndOf="@id/hoursPicker"
+            app:layout_constraintTop_toTopOf="@id/hoursPicker" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="35dp"
+            android:text="@string/m_label"
+            android:textColor="@color/app_color"
+            android:textSize="29sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/hoursPicker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/hoursPicker" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/reminderMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/reminder_mode_text"
+            android:textColor="@color/main_text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hoursPicker" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:text="@string/ring_text"
+            android:textColor="@color/main_text"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/reminderMode"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="15dp"
+            app:constraint_referenced_ids="cancelBtn, saveBtn"
+            app:flow_horizontalGap="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reminderMode" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelBtn"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(View) -> viewModel.onCancel(View)}"
+            android:text="@string/cancel_text_btn"
+            android:textAllCaps="false"
+            android:textColor="@color/app_color"
+            app:cornerRadius="8dp"
+            app:strokeColor="@color/app_color"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveBtn"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(View) -> viewModel.onSave(View)}"
+            android:text="@string/save_text_btn"
+            android:textAllCaps="false"
+            android:textColor="@color/app_color"
+            app:cornerRadius="8dp"
+            app:strokeColor="@color/app_color"
+            app:strokeWidth="2dp"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

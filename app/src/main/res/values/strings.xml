@@ -1,4 +1,34 @@
 <resources>
     <string name="app_name">FirstWeekApp</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="time">%02d:%02d</string>
+    <string name="concate_data">%1s %2s %3s</string>
+    <string name="time_not_set_up">--:--</string>
+    <string name="allign_zero">%02d</string>
+    <string name="add_new_tag">+ Add new tag</string>
+    <string name="add_task">Add Task</string>
+    <string name="title">Title</string>
+    <string name="personal">Personal</string>
+    <string name="tags_tag">Tags</string>
+    <string name="create_button_text">Create</string>
+    <string name="type_tag">Type</string>
+    <string name="secret_tag">Secret</string>
+    <string name="time_tag">Time</string>
+    <string name="date_tag">Date</string>
+    <string name="description_tag">Description</string>
+    <string name="private_tag">Private</string>
+    <string name="cancel_text_btn">Cancel</string>
+    <string name="save_text_btn">Save</string>
+    <string name="new_tag_label_dialog">New Tag</string>
+    <string name="ring_text"><![CDATA[Ring >]]></string>
+    <string name="reminder_mode_text">Reminder Mode</string>
+    <string name="m_label">m</string>
+    <string name="h_label">h</string>
+    <string name="edit_time_tag">Edit Time</string>
+    <string name="no_task_text">You don’t have any schedule today.\nTap the plus button to create new to-do.</string>
+    <string name="calendar_text">August</string>
+    <string name="today_tag">Today</string>
+    <string name="task_tag">Task</string>
+    <string name="search_hint">Search for</string>
 </resources>
