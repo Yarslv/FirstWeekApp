@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="app_color">?attr/colorPrimary</color>
+    <color name="app_color">#5b67ca</color>
     <color name="day_names_color">#333333</color>
     <color name="transparent">#00000000</color>
     <color name="text_color_calendar">#666666</color>
