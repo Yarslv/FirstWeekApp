@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.internship.firstweekapp.ui.tabs.points_fragment.PointModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/levelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.classType}"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/starBtn"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hero" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/classText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="18sp"
+            android:text="@{model.level}"
+            app:layout_constraintStart_toEndOf="@id/levelText"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Level 4" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/descriptionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text=""
+            app:layout_constraintStart_toEndOf="@id/starBtn"
+            tools:text="Available 2i2i2o2" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/deleteBtn"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/ic_baseline_delete_24"
+            app:iconTint="@color/icon_color_unselected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/starBtn"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/ic_baseline_star_24"
+            app:iconTint="@color/icon_color_unselected"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

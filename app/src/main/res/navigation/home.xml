@@ -2,9 +2,34 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/mainScreen2">
-    <activity
-        android:id="@+id/mainScreen2"
-        android:name="com.internship.firstweekapp.ui.main.MainScreen"
-        android:label="MainScreen" />
+    app:startDestination="@id/confirmAgeFragment">
+    <action
+        android:id="@+id/action_global_toLevelFragment"
+        app:destination="@id/confirmLevelFragment" />
+    <action
+        android:id="@+id/action_global_toClassFragment"
+        app:destination="@id/confirmClassFragment" />
+    <action
+        android:id="@+id/action_global_toTabsFragment"
+        app:destination="@id/tabsFragment" />
+    <fragment
+        android:id="@+id/confirmAgeFragment"
+        android:name="com.internship.firstweekapp.ui.setup_screens.confirm_age.ConfirmAgeFragment"
+        android:label="ConfirmAgeFragment" />
+    <fragment
+        android:id="@+id/confirmLevelFragment"
+        android:name="com.internship.firstweekapp.ui.setup_screens.confirm_level.ConfirmLevelFragment"
+        android:label="ConfirmLevelFragment" />
+    <fragment
+        android:id="@+id/confirmClassFragment"
+        android:name="com.internship.firstweekapp.ui.setup_screens.confirm_class.ConfirmClassFragment"
+        android:label="ConfirmClassFragment" />
+    <fragment
+        android:id="@+id/tabsFragment"
+        android:name="com.internship.firstweekapp.ui.tabs.tab_fragment.TabsFragment"
+        android:label="TabsFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.internship.firstweekapp.ui.tabs.map_fragment.MapFragment"
+        android:label="MapFragment" />
 </navigation>

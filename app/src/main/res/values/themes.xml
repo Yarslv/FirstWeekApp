@@ -1,6 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.FirstWeekApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.FirstWeekApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -10,7 +10,42 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="BlueBorderedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/blue_app_color</item>
+        <item name="strokeColor">@color/blue_app_color</item>
+    </style>
+
+    <style name="BlueSlider" parent="Widget.MaterialComponents.Slider">
+        <item name="trackColorActive">@color/seek_bar_color</item>
+        <item name="trackColorInactive">@color/seek_bar_track_color</item>
+        <item name="thumbColor">@color/seek_bar_color</item>
+        <item name="tickVisible">false</item>
+
+    </style>
+
+
+    <style name="PinkSwitch" parent="Widget.Material3.CompoundButton.Switch">
+        <item name="thumbTint">@drawable/thumb_tint_color_selector</item>
+        <item name="trackTint">@drawable/track_tint_color_selector</item>
+    </style>
+
+    <style name="PinkRadio" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="android:textSize">18sp</item>
+        <item name="buttonTint">@color/pink_app_color</item>
+
+    </style>
+
+    <style name="ReclrBtn" parent="ShapeAppearanceOverlay.Material3.Button">
+
+        <item name="android:src">@drawable/ic_baseline_delete_24</item>
+    </style>
+
+    <style name="BottomNav" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemTextColor">@drawable/bottom_nav_color</item>
+        <item name="itemIconTint">@drawable/bottom_nav_color</item>
     </style>
 </resources>
