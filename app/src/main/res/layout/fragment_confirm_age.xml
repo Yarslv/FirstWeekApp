@@ -26,7 +26,7 @@
             style="@style/PinkSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="@={viewModel.isAgeConfirmed}"
+            android:checked="@={viewModel.screenModel.value}"
             android:text="@string/question_age"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@id/chbGuideline"
@@ -38,7 +38,7 @@
             style="@style/BlueBorderedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            app:buttonSelector="@{viewModel.screenModel.value}"
             android:text="@string/next_btn_text"
             android:onClick="@{() -> viewModel.onNext()}"
             app:layout_constraintBottom_toBottomOf="@id/butonGuideline"

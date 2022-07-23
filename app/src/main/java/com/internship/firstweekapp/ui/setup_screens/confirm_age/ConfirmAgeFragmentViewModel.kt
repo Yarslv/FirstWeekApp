@@ -1,17 +1,24 @@
 package com.internship.firstweekapp.ui.setup_screens.confirm_age
 
-import androidx.databinding.ObservableField
 import com.internship.firstweekapp.arch.BaseViewModel
 import com.internship.firstweekapp.arch.lifecycle.SingleLiveEvent
+import com.internship.firstweekapp.subarch.ScreenModel
+import org.jetbrains.annotations.NotNull
 
-class ConfirmAgeFragmentViewModel : BaseViewModel() {
+class ConfirmAgeFragmentViewModel(@NotNull val screenModel: ScreenModel<Boolean>) :
+    BaseViewModel() {
+
+    init {
+        screenModel.setName(this.javaClass)
+        screenModel.value.set(false)
+    }
 
     val navigateEvent = SingleLiveEvent<Boolean>()
 
-    val isAgeConfirmed = ObservableField(false)
-
     fun onNext() {
-        if (isAgeConfirmed.get()!!)
+        if (screenModel.value.get()!!) {
+            screenModel.saveModel()
             navigateEvent.postValue(true)
+        }
     }
 }

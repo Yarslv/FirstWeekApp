@@ -1,17 +1,21 @@
 package com.internship.firstweekapp.ui.setup_screens.confirm_level
 
-import androidx.databinding.ObservableField
 import com.internship.firstweekapp.arch.BaseViewModel
 import com.internship.firstweekapp.arch.lifecycle.SingleLiveEvent
+import com.internship.firstweekapp.subarch.ScreenModel
 
 
 enum class ConfirmBtnVariation {
     Back, Next
 }
 
-class ConfirmLevelFragmentViewModel : BaseViewModel() {
+class ConfirmLevelFragmentViewModel(val model: ScreenModel<Float>) : BaseViewModel() {
 
-    var sliderValue = ObservableField(1.0f)
+    init {
+        model.value.set(1f)
+        model.setName(this.javaClass)
+
+    }
 
     val navigationEvent = SingleLiveEvent<ConfirmBtnVariation>()
 
@@ -20,6 +24,7 @@ class ConfirmLevelFragmentViewModel : BaseViewModel() {
     }
 
     fun onNext() {
+        model.saveModel()
         navigationEvent.postValue(ConfirmBtnVariation.Next)
     }
 }

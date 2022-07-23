@@ -8,6 +8,7 @@ import com.internship.firstweekapp.Constants
 import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.BaseFragment
 import com.internship.firstweekapp.databinding.FragmentPointsBinding
+import com.internship.firstweekapp.ui.setup_screens.confirm_class.UserClass
 import org.json.JSONObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,16 +30,19 @@ class PointsFragment : BaseFragment<FragmentPointsBinding>(R.layout.fragment_poi
         try {
             JSONObject(
                 // for ctrl+c
-                //{"level": 99,"class": "cSass","latitude": 34.15,"longtitude": 2.17}
+                //{"level": 5,"class": "Master","latitude": 34.15,"longtitude": 2.17}
                 //{"level": 6,"class": "cdass","latitude": 55.15,"longtitude": 26.17}
                 //{"level": 15,"class": "class","latitude": 9.15,"longtitude": 36.17}
                 service.primaryClip?.getItemAt(0)?.text.toString()
             ).apply {
+
+
                 viewModel.addNewPoint(
                     PointModel(
-                        this.getString(Constants.LEVEL_TAG).toString(),
-                        this.getString(Constants.CLASS_TAG).toString(),
+                        UserClass.valueOf(this.getString(Constants.CLASS_TAG).toString()),
+                        this.getString(Constants.LEVEL_TAG).toFloat().toString(),
                         this.getString(Constants.LATITUDE_TAG).toDouble(),
+                        this.getString(Constants.DATETIME_TAG).toLong(),
                         this.getString(Constants.LONGTITUDE_TAG).toDouble()
                     )
                 )

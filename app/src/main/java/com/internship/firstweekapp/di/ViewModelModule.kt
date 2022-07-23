@@ -7,17 +7,15 @@ import com.internship.firstweekapp.ui.setup_screens.confirm_level.ConfirmLevelFr
 import com.internship.firstweekapp.ui.tabs.map_fragment.MapFragmentViewModel
 import com.internship.firstweekapp.ui.tabs.points_fragment.PointsFragmentViewModel
 import com.internship.firstweekapp.ui.tabs.setting_fragment.SettingFragmentViewModel
-import com.internship.firstweekapp.ui.tabs.tab_fragment.TabsFragmentViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { MainViewModel() }
-    viewModel { ConfirmAgeFragmentViewModel() }
-    viewModel { ConfirmClassFragmentViewModel() }
-    viewModel { ConfirmLevelFragmentViewModel() }
-    viewModel { TabsFragmentViewModel() }
+    viewModel { ConfirmAgeFragmentViewModel(get()) }
+    viewModel { ConfirmClassFragmentViewModel(get()) }
+    viewModel { ConfirmLevelFragmentViewModel(get()) }
     viewModel { MapFragmentViewModel() }
-    viewModel { SettingFragmentViewModel() }
+    viewModel { SettingFragmentViewModel(get(), get()) }
     single { PointsFragmentViewModel() }
 }

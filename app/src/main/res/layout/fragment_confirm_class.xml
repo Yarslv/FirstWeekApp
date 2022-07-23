@@ -37,28 +37,29 @@
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:setCheckedButton="@={viewModel.model.value}"
             app:layout_constraintStart_toStartOf="@id/classText"
             app:layout_constraintTop_toBottomOf="@id/chbGuideline">
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 style="@style/PinkRadio"
+                android:id="@+id/playerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="@={viewModel.radio1}"
                 android:text="@string/player_answ" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 style="@style/PinkRadio"
+                android:id="@+id/heroButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="@={viewModel.radio2}"
                 android:text="@string/hero_answr" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 style="@style/PinkRadio"
+                android:id="@+id/masterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="@={viewModel.radio3}"
                 android:text="@string/master_answr" />
 
 
@@ -86,6 +87,7 @@
             style="@style/BlueBorderedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:buttonSelectorFromClass="@{viewModel.model.value}"
             android:onClick="@{() -> viewModel.onNext()}"
             android:text="@string/next_btn_text"
             tools:ignore="MissingConstraints" />

@@ -10,8 +10,14 @@
         android:id="@+id/action_global_toClassFragment"
         app:destination="@id/confirmClassFragment" />
     <action
-        android:id="@+id/action_global_toTabsFragment"
-        app:destination="@id/tabsFragment" />
+        android:id="@+id/global_to_MapFragment"
+        app:destination="@id/mapFragment" />
+    <action
+        android:id="@+id/global_to_PointsFragment"
+        app:destination="@id/pointsFragment" />
+    <action
+        android:id="@+id/global_to_SettingFragment"
+        app:destination="@id/settingFragment" />
     <fragment
         android:id="@+id/confirmAgeFragment"
         android:name="com.internship.firstweekapp.ui.setup_screens.confirm_age.ConfirmAgeFragment"
@@ -25,11 +31,15 @@
         android:name="com.internship.firstweekapp.ui.setup_screens.confirm_class.ConfirmClassFragment"
         android:label="ConfirmClassFragment" />
     <fragment
-        android:id="@+id/tabsFragment"
-        android:name="com.internship.firstweekapp.ui.tabs.tab_fragment.TabsFragment"
-        android:label="TabsFragment" />
-    <fragment
         android:id="@+id/mapFragment"
         android:name="com.internship.firstweekapp.ui.tabs.map_fragment.MapFragment"
         android:label="MapFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.internship.firstweekapp.ui.tabs.setting_fragment.SettingFragment"
+        android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/pointsFragment"
+        android:name="com.internship.firstweekapp.ui.tabs.points_fragment.PointsFragment"
+        android:label="PointsFragment" />
 </navigation>
