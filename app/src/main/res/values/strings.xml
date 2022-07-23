@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">FirstWeekApp</string>
-
+    <string name="json_format">{"level": %s,"class": %s,"latitude": %s,"time": %s,"longtitude": %s}</string>
+    <string name="level_text_format">%s from %s</string>
+    <string name="unsupported_text_msg">Unsupported text in clipboard</string>
+    <string name="question_age">Are you age more then 16?</string>
+    <string name="next_btn_text">Next</string>
+    <string name="class_question">Whats you class?</string>
+    <string name="player_answ">Player</string>
+    <string name="hero_answr">Hero</string>
+    <string name="master_answr">Master</string>
+    <string name="prev_btn_text">Prev</string>
+    <string name="export_btn_text">Export my\nPosition</string>
+    <string name="level_question">Whats you level?</string>
+    <string name="map_item_text">Map</string>
+    <string name="points_item_text">Points</string>
+    <string name="settings_item_text">Settings</string>
+    <string name="dateTimeFormat">Available at %s</string>
 </resources>

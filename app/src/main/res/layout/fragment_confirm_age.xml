@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.internship.firstweekapp.ui.setup_screens.confirm_age.ConfirmAgeFragmentViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@raw/peoples"
+            app:layout_constraintTop_toTopOf="@id/imgIconsGuideline"
+            app:layout_constraintBottom_toBottomOf="@id/imgIconsGuideline" />
+
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            style="@style/PinkSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@={viewModel.screenModel.value}"
+            android:text="@string/question_age"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/chbGuideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/BlueBorderedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:buttonSelector="@{viewModel.screenModel.value}"
+            android:text="@string/next_btn_text"
+            android:onClick="@{() -> viewModel.onNext()}"
+            app:layout_constraintBottom_toBottomOf="@id/butonGuideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/imgIconsGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/chbGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/butonGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue_app_color">#2596be</color>
+    <color name="pink_app_color">#f30857</color>
+    <color name="pink_app_color2">#fa7fa8</color>
+    <color name="seek_bar_color">#088888</color>
+    <color name="seek_bar_track_color">#c1e2e2</color>
+    <color name="icon_color_unselected">#8c8c8c</color>
 </resources>
