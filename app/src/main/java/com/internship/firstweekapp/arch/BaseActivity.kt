@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes private val resId: Int) :
     AppCompatActivity() {
 
-    private lateinit var binding: T
+    protected lateinit var binding: T
     protected abstract val viewModel: BaseViewModel
     protected abstract val navController: NavController
     protected open fun setObservers() {}
