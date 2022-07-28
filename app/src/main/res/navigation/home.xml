@@ -2,9 +2,33 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/mainScreen2">
-    <activity
-        android:id="@+id/mainScreen2"
-        android:name="com.internship.firstweekapp.ui.main.MainScreen"
-        android:label="MainScreen" />
+    app:startDestination="@id/notesListFragment">
+    <fragment
+        android:id="@+id/notesListFragment"
+        android:name="com.internship.firstweekapp.ui.notes_list.NotesListFragment"
+        android:label="NotesListFragment">
+        <action
+            android:id="@+id/action_notesListFragment_to_addEditNoteFragment"
+            app:destination="@id/addEditNoteFragment">
+            <argument
+                android:name="type"
+                app:argType="string" />
+            <argument
+                android:name="itemNumber"
+                android:defaultValue="-1"
+                app:argType="integer" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/addEditNoteFragment"
+        android:name="com.internship.firstweekapp.ui.add_note.AddEditNoteFragment"
+        android:label="AddEditNoteFragment">
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <argument
+            android:name="itemNumber"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 </navigation>

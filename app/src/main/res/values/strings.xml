@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">FirstWeekApp</string>
+    <string name="edit_toolbar_title">Edit notes</string>
+    <string name="add_toolbar_title">Add notes</string>
+    <string name="title_incorrect">Title Incorrect</string>
+    <string name="content_incorrect">Content Incorrect</string>
+    <string name="choose_color_text">Choose color</string>
+    <string name="enter_content_hint">Enter Content</string>
+    <string name="enter_title_hint">Enter Title</string>
+    <string name="edit_is_enable_checkbox_text">Edit is Enable</string>
+    <string name="fab_a">Fab-a</string>
+    <string name="by_date_sort_text">By date</string>
+    <string name="by_title_sort_text">By title</string>
+    <string name="by_color_sort_text">By color</string>
+    <string name="by_content_sort_text">By content</string>
+    <string name="notes_list_tag">Notes list</string>
+    <string name="emergency_tag">Emergency</string>
+    <string name="help_tag">Help</string>
 
 </resources>

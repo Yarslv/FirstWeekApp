@@ -3,6 +3,7 @@ package com.internship.firstweekapp.ui.main
 import android.content.Intent
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.navigation.NavigationView
 import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.BaseActivity
 import com.internship.firstweekapp.databinding.ActivityMainBinding
@@ -20,6 +21,14 @@ class MainScreen : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
+    }
+
+    fun showDrawer(){
+        binding.drawerLayout.open()
+    }
+
+    fun getNavigationView(): NavigationView {
+        return binding.navigationView
     }
 
     override fun setObservers() {}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/sort"
+        android:icon="@drawable/ic_baseline_filter_list_24"
+        android:iconTint="@color/white"
+        android:title=""
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/date"
+                android:icon="@drawable/ic_baseline_expand_more_24"
+                android:iconTint="@color/gray_icon_color"
+                android:iconTintMode="src_in"
+                android:title="By date" />
+            <item
+                android:id="@+id/title"
+                android:icon="@drawable/ic_baseline_expand_more_24"
+                android:iconTint="@color/gray_icon_color"
+                android:iconTintMode="src_in"
+                android:title="By title" />
+            <item
+                android:id="@+id/color"
+                android:icon="@drawable/ic_baseline_expand_more_24"
+                android:iconTint="@color/gray_icon_color"
+                android:iconTintMode="src_in"
+                android:title="By color" />
+            <item
+                android:id="@+id/content"
+                android:icon="@drawable/ic_baseline_expand_more_24"
+                android:iconTint="@color/gray_icon_color"
+                android:iconTintMode="src_in"
+                android:title="By content" />
+
+        </menu>
+    </item>
+</menu>

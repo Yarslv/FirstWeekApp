@@ -1,11 +1,12 @@
 package com.internship.firstweekapp.arch.adapter
 
+import android.util.Log
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseRecyclerAdapter<VH : RecyclerView.ViewHolder, E> : RecyclerView.Adapter<VH>() {
 
-    private val adapterItems = ArrayList<E>()
+    val adapterItems = ArrayList<E>()
 
     protected open fun getDiffCallback(newItems: List<E>): DiffUtil.Callback {
         return AbstractDiffCallback(newItems, adapterItems)
@@ -15,6 +16,7 @@ abstract class BaseRecyclerAdapter<VH : RecyclerView.ViewHolder, E> : RecyclerVi
         val diffResult = DiffUtil.calculateDiff(getDiffCallback(items))
         adapterItems.clear()
         adapterItems.addAll(items)
+        Log.d("recwr", items.toString())
         diffResult.dispatchUpdatesTo(this)
     }
 
