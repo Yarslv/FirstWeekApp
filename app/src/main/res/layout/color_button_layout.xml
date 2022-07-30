@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="model"
+            type="com.internship.firstweekapp.ui.add_note.recycler_adapter.ColorButtonModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="24dp"
+        android:setColor="@{model.color}"
+        android:onClick="@{() -> model.change()}"
+        android:layout_marginEnd="10dp"
+        android:layout_height="24dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@drawable/black_border"
+            android:visibility="@{model.state? View.VISIBLE : View.INVISIBLE}"
+            android:layout_height="match_parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -8,7 +8,7 @@ import com.internship.firstweekapp.arch.BaseViewModel
 import com.internship.firstweekapp.arch.lifecycle.SingleLiveEvent
 import com.internship.firstweekapp.room.DatabaseProvider
 import com.internship.firstweekapp.room.Note
-import com.internship.firstweekapp.ui.notes_list.note_item.NoteViewModel
+import com.internship.firstweekapp.ui.notes_list.note_item.NoteModel
 import com.internship.firstweekapp.util.Direction
 import com.internship.firstweekapp.util.SortBy
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class NotesListFragmentViewModel(val databaseProvider: DatabaseProvider) : BaseViewModel() {
 
-    val list = ObservableArrayList<NoteViewModel>()
+    val list = ObservableArrayList<NoteModel>()
     val sortBy = MutableLiveData<SortBy>()
     private val sortTypeObserver = Observer<SortBy> {
         viewModelScope.launch(Dispatchers.IO) {}
@@ -29,52 +29,29 @@ class NotesListFragmentViewModel(val databaseProvider: DatabaseProvider) : BaseV
     private val directionObserver = Observer<Direction> {
         viewModelScope.launch(Dispatchers.IO) {
             list.clear()
-            setList(it)
+            setList()
         }
     }
 
     init {
         direction.observeForever(directionObserver)
         sortBy.observeForever(sortTypeObserver)
-        sortBy.postValue(SortBy.Title)
-        direction.postValue(Direction.Reverse)
+        sortBy.postValue(SortBy.title)
+        direction.postValue(Direction.DESC)
     }
 
-    fun setList(it: Direction) {
+    fun setList() {
         viewModelScope.launch(Dispatchers.IO) {
             list.clear()
-            when (it) {
-                Direction.Normal -> {
-                    when (sortBy.value) {
-                        SortBy.Date -> list.addAll(
-                            databaseProvider.getAll().sortedBy { it.title.get() })
-                        SortBy.Title -> list.addAll(
-                            databaseProvider.getAll().sortedBy { it.title.get() })
-                        SortBy.Color -> list.addAll(
-                            databaseProvider.getAll().sortedBy { it.color.get() })
-                        SortBy.Content -> list.addAll(
-                            databaseProvider.getAll().sortedBy { it.content.get() })
-                    }
-                }
-
-                Direction.Reverse ->
-                    when (sortBy.value) {
-                        SortBy.Date -> list.addAll(
-                            databaseProvider.getAll().sortedByDescending { it.title.get() })
-                        SortBy.Title -> list.addAll(
-                            databaseProvider.getAll().sortedByDescending { it.title.get() })
-                        SortBy.Color -> list.addAll(
-                            databaseProvider.getAll().sortedByDescending { it.color.get() })
-                        SortBy.Content -> list.addAll(
-                            databaseProvider.getAll().sortedByDescending { it.content.get() })
-                    }
-            }
+            list.addAll(
+                databaseProvider.getSortedBy(sortBy.value.toString(), direction.value.toString())
+            )
         }
     }
 
-    fun remove(removeAt: NoteViewModel) {
+    fun remove(removeAt: NoteModel) {
         viewModelScope.launch(Dispatchers.IO) {
-            databaseProvider.delete(
+            databaseProvider.deleteAll(
                 Note(
                     title = removeAt.title.get().toString(),
                     content = removeAt.content.get().toString(),

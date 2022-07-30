@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.internship.firstweekapp.databinding.NoteItemBinding
-import com.internship.firstweekapp.ui.notes_list.note_item.NoteViewModel
+import com.internship.firstweekapp.ui.notes_list.note_item.NoteModel
 
 class ViewHolder private constructor(private val binding: NoteItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(model: NoteViewModel) {
+    fun bind(model: NoteModel) {
         binding.viewModel = model
 
     }

@@ -7,8 +7,12 @@ import androidx.navigation.fragment.navArgs
 import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.BaseFragment
 import com.internship.firstweekapp.databinding.FragmentAddEditNotesBinding
+import com.internship.firstweekapp.ui.add_note.recycler_adapter.ColorButtonModel
+import com.internship.firstweekapp.ui.add_note.recycler_adapter.ColorRecyclerAdapter
+import com.internship.firstweekapp.ui.add_note.recycler_adapter.OnColorClick
 import com.internship.firstweekapp.util.navigateBack
 import com.internship.firstweekapp.util.AddOrEditFlag
+import com.internship.firstweekapp.util.NotesColor
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddEditNoteFragment :
@@ -20,8 +24,20 @@ class AddEditNoteFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.viewModel = viewModel.apply {
             isAddOrEdit.set(AddOrEditFlag.valueOf(navArgs.type))
-            id = navArgs.itemNumber
+            model.id = navArgs.itemNumber
             getData()
+        }
+
+        binding.colorRecycler.adapter = ColorRecyclerAdapter(object : OnColorClick{
+            override fun onColorItemClick(color: NotesColor) {
+                viewModel.model.color.set(color)
+            }
+        }).apply {
+        val arr = arrayListOf<ColorButtonModel>()
+            NotesColor.values().forEach {
+                arr.add(ColorButtonModel(it))
+            }
+            setContent(arr)
         }
 
         binding.toolbar.setOnMenuItemClickListener {

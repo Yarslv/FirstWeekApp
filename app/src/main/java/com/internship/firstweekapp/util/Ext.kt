@@ -1,6 +1,8 @@
 package com.internship.firstweekapp.util
 
 import android.widget.RadioGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
@@ -18,38 +20,14 @@ fun Fragment.navigateBack() {
     findNavController().navigateUp()
 }
 
-@BindingAdapter("android:setCheckedButton")
-fun RadioGroup.setCheckedButton(noteColor: NotesColor) {
-    when (noteColor) {
-        NotesColor.Red -> {check(R.id.radio1)}
-        NotesColor.Yellow -> {check(R.id.radio2)}
-        NotesColor.Green -> {check(R.id.radio3)}
-        NotesColor.Pink -> {check(R.id.radio4)}
-        NotesColor.Cyan -> {check(R.id.radio5)}
-        NotesColor.Turquoise -> {check(R.id.radio6)}
-            }
-}
-
-@InverseBindingAdapter(attribute = "android:setCheckedButton")
-fun getRadioGroupValue(radioGroup: RadioGroup): NotesColor {
-    return when (radioGroup.checkedRadioButtonId) {
-        R.id.radio1 -> NotesColor.Red
-        R.id.radio2 -> NotesColor.Yellow
-        R.id.radio3 -> NotesColor.Green
-        R.id.radio4 -> NotesColor.Pink
-        R.id.radio5 -> NotesColor.Cyan
-        R.id.radio6 -> NotesColor.Turquoise
-        else -> {
-            NotesColor.Red}
-    }
-}
-
-@BindingAdapter("android:setCheckedButtonAttrChanged")
-fun setRadioGroupListeners(
-    radioGroup: RadioGroup,
-    attrChange: InverseBindingListener
-) {
-    radioGroup.setOnCheckedChangeListener { group, checkedId ->
-        attrChange.onChange()
+@BindingAdapter("android:setColor")
+fun ConstraintLayout.setColor(color: NotesColor){
+    background = when(color){
+        NotesColor.Red -> ContextCompat.getDrawable(context, R.color.notes_color_red_dark)
+        NotesColor.Yellow -> ContextCompat.getDrawable(context, R.color.notes_color_yellow)
+        NotesColor.Green -> ContextCompat.getDrawable(context, R.color.notes_color_green_light)
+        NotesColor.Pink -> ContextCompat.getDrawable(context, R.color.notes_color_pink_light)
+        NotesColor.Cyan -> ContextCompat.getDrawable(context, R.color.notes_color_cyan)
+        NotesColor.Turquoise -> ContextCompat.getDrawable(context, R.color.notes_color_turquoise)
     }
 }

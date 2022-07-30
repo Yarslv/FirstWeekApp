@@ -3,7 +3,8 @@ package com.internship.firstweekapp.room
 import android.content.Context
 import androidx.room.Room
 import com.internship.firstweekapp.Constants
-import com.internship.firstweekapp.ui.notes_list.note_item.NoteViewModel
+import com.internship.firstweekapp.arch.mapper.Mapper
+import com.internship.firstweekapp.ui.notes_list.note_item.NoteModel
 import com.internship.firstweekapp.util.NotesColor
 
 class DatabaseProvider(val context: Context) {
@@ -11,34 +12,28 @@ class DatabaseProvider(val context: Context) {
         context,
         NotesDataBase::class.java, Constants.DATABASE_NAME
     )
-//         .fallbackToDestructiveMigration()
+         .fallbackToDestructiveMigration()
         .build()
 
 
-    fun getAll(): ArrayList<NoteViewModel> {
-        val a = base.notesDao().getAll()
-        val r = arrayListOf<NoteViewModel>()
-        a.forEach {
-            r.add(
-                NoteViewModel(
-                    title = it.title,
-                    content = it.content,
-                    color = NotesColor.valueOf(it.color),
-                    id = it.id,
-                    isEditable = it.isEdit
-                )
-            )
-        }
+    fun getAll(): ArrayList<NoteModel> {
+        return MMapper().toDomain(base.notesDao().getAll())
+    }
 
-        return r
+    fun deleteAll(){
+        base.notesDao().deleteAll()
     }
 
     fun update(note: Note) {
         base.notesDao().update(note)
     }
 
-    fun delete(note: Note) {
-        base.notesDao().delete(note)
+    fun getSortedBy(sortField: String, toString: String): ArrayList<NoteModel> {
+        return MMapper().toDomain(base.notesDao().getWithRaw(sortField, toString))
+    }
+
+    fun deleteAll(note: Note) {
+        base.notesDao().deleteAll(note)
     }
 
     fun add(note: Note) {
@@ -47,6 +42,26 @@ class DatabaseProvider(val context: Context) {
 
     fun getConcrete(id: Int): Note {
         return base.notesDao().getConcrete(id)
+    }
+
+}
+
+class MMapper :
+    Mapper<List<Note>, ArrayList<NoteModel>> {
+    override fun toDomain(model: List<Note>): ArrayList<NoteModel> {
+        val result = arrayListOf<NoteModel>()
+        model.forEach {
+            result.add(
+                NoteModel(
+                    title = it.title,
+                    content = it.content,
+                    color = NotesColor.valueOf(it.color),
+                    id = it.id,
+                    isEditable = it.isEdit
+                )
+            )
+        }
+        return result
     }
 
 }

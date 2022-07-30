@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.internship.firstweekapp.ui.notes_list.note_item.NoteViewModel" />
+            type="com.internship.firstweekapp.ui.notes_list.note_item.NoteModel" />
 
     </data>
 

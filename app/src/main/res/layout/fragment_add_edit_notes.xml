@@ -46,7 +46,7 @@
                 android:hint="@string/enter_title_hint"
                 android:inputType="text"
                 android:maxLines="1"
-                android:text="@={viewModel.title}"
+                android:text="@={viewModel.model.title}"
                 android:textColor="#b0b0b0"
                 android:textSize="12sp"
                 tools:text="titltr\nhhh" />
@@ -73,7 +73,7 @@
                 android:gravity="top|start"
                 android:hint="@string/enter_content_hint"
                 android:inputType="textMultiLine"
-                android:text="@={viewModel.content}"
+                android:text="@={viewModel.model.content}"
                 android:textColor="#b0b0b0"
                 android:textSize="12sp"
                 tools:text="sasksjglksdjskopdjfslk;jfm;dkldsjm;lkdmf;fdlhk,';lhg'df;lg\'d;gd;ghgfhgh]d\';df'gsdfk;ldsaf" />
@@ -99,83 +99,30 @@
             app:layout_constraintStart_toStartOf="@id/contentDivider"
             app:layout_constraintTop_toBottomOf="@id/contentDivider" />
 
-        <RadioGroup
-            android:id="@+id/radiioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/colorRecycler"
             android:orientation="horizontal"
-            android:setCheckedButton="@={viewModel.color}"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@id/contentDivider"
-            app:layout_constraintTop_toBottomOf="@id/chooseColor">
+            app:layout_constraintTop_toBottomOf="@id/chooseColor"
+            tools:listitem="@layout/color_button_layout"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_height="wrap_content"/>
 
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radio1"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/radio_selector1"
-                android:button="@color/transparent"
-                android:checked="true"
-                android:minWidth="30dp" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radio2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/radio_selector2"
-                android:button="@color/transparent"
-                android:checked="true"
-                android:minWidth="30dp" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radio3"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/radio_selector3"
-                android:button="@color/transparent"
-                android:checked="true"
-                android:minWidth="30dp" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radio4"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/radio_selector4"
-                android:button="@color/transparent"
-                android:checked="true"
-                android:minWidth="30dp" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radio5"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/radio_selector5"
-                android:button="@color/transparent"
-                android:checked="true"
-                android:minWidth="30dp" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/radio6"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/radio_selector6"
-                android:button="@color/transparent"
-                android:checked="true"
-                android:minWidth="30dp" />
-
-        </RadioGroup>
 
         <View
             android:id="@+id/colorDivider"
             style="@style/Line"
             android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/radiioGroup" />
+            app:layout_constraintTop_toBottomOf="@id/colorRecycler" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="@={viewModel.ediIsEnable}"
+            android:checked="@={viewModel.model.ediIsEnable}"
             android:text="@string/edit_is_enable_checkbox_text"
             android:textColor="@color/gray_icon_color"
             android:visibility="@{viewModel.isAddOrEdit == AddOrEditFlag.Add? View.VISIBLE : View.GONE}"

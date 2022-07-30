@@ -55,6 +55,6 @@ fun AppCompatImageView.setImage(isExtended: Boolean) {
 }
 
 @BindingAdapter("android:setList")
-fun RecyclerView.setList(list: ArrayList<NoteViewModel>) {
+fun RecyclerView.setList(list: ArrayList<NoteModel>) {
     (adapter as NotesRecyclerAdapter).setContent(list)
 }

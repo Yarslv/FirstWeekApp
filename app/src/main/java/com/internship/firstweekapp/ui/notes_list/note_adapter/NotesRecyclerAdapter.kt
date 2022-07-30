@@ -8,9 +8,9 @@ import com.internship.firstweekapp.R
 import com.internship.firstweekapp.arch.adapter.BaseRecyclerAdapter
 import com.internship.firstweekapp.util.AddOrEditFlag
 import com.internship.firstweekapp.ui.notes_list.NotesListFragmentDirections
-import com.internship.firstweekapp.ui.notes_list.note_item.NoteViewModel
+import com.internship.firstweekapp.ui.notes_list.note_item.NoteModel
 
-class NotesRecyclerAdapter : BaseRecyclerAdapter<ViewHolder, NoteViewModel>() {
+class NotesRecyclerAdapter : BaseRecyclerAdapter<ViewHolder, NoteModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)

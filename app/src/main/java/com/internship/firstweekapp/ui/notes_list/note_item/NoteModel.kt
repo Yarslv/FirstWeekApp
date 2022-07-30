@@ -6,10 +6,10 @@ import com.internship.firstweekapp.arch.adapter.AdapterContentElement
 import com.internship.firstweekapp.arch.lifecycle.SingleLiveEvent
 import com.internship.firstweekapp.util.NotesColor
 
-class NoteViewModel(
+class NoteModel(
     title: String = "",
     content: String = "", color: NotesColor, val id: Int = -1, val isEditable: Boolean = false
-) : BaseViewModel(), AdapterContentElement {
+) {
     var title = ObservableField(title)
     var content = ObservableField(content)
     var isExtended = ObservableField(false)
@@ -22,10 +22,6 @@ class NoteViewModel(
 
     fun onEdit() {
         navEvent.postValue(true)
-    }
-
-    override fun areContentsTheSame(other: AdapterContentElement): Boolean {
-        return false
     }
 }
 

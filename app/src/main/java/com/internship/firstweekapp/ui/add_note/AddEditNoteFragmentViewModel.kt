@@ -19,34 +19,27 @@ enum class Error {
 }
 class AddEditNoteFragmentViewModel(private val databaseProvider: DatabaseProvider) : BaseViewModel() {
     val isAddOrEdit = ObservableField<AddOrEditFlag>()
-    var id = -1
-
-    val title = ObservableField<String>()
-    val content = ObservableField<String>()
-
-    val color = ObservableField(NotesColor.Red)
-
-    val ediIsEnable = ObservableField(false)
+    val model = ADDEditModel()
 
     val toastEvent = SingleLiveEvent<Error>()
 
     fun getData() {
         viewModelScope.launch(Dispatchers.IO) {
             if (isAddOrEdit.get() == AddOrEditFlag.Edit) {
-                val old = databaseProvider.getConcrete(id)
-                title.set(old.title)
-                content.set(old.content)
+                val old = databaseProvider.getConcrete(model.id)
+                model.title.set(old.title)
+                model.content.set(old.content)
             }
         }
     }
 
     fun save():Boolean {
-        if(title.get().isNullOrEmpty()){
+        if(model.title.get().isNullOrEmpty()){
             toastEvent.postValue(Error.TitleIsEmpty)
             return false
         }
 
-        if(content.get().isNullOrEmpty()){
+        if(model.content.get().isNullOrEmpty()){
             toastEvent.postValue(Error.ContentIsEmpty)
             return false
         }
@@ -57,10 +50,10 @@ class AddEditNoteFragmentViewModel(private val databaseProvider: DatabaseProvide
                 AddOrEditFlag.Add -> {
                     databaseProvider.add(
                         Note(
-                            title = title.get().toString(),
-                            content = content.get().toString(),
-                            color = color.get().toString(),
-                            isEdit = ediIsEnable.get() == true
+                            title = model.title.get().toString(),
+                            content = model.content.get().toString(),
+                            color = model.color.get().toString(),
+                            isEdit = model.ediIsEnable.get() == true
                         )
                     )
 
@@ -69,11 +62,11 @@ class AddEditNoteFragmentViewModel(private val databaseProvider: DatabaseProvide
                     Log.d("recwEdit", "d;lfd;")
                     databaseProvider.update(
                         Note(
-                            title = title.get().toString(),
-                            content = content.get().toString(),
-                            color = color.get().toString(),
+                            title = model.title.get().toString(),
+                            content = model.content.get().toString(),
+                            color = model.color.get().toString(),
                             isEdit = true,
-                            id = id
+                            id = model.id
                         )
                     )
                 }
@@ -82,5 +75,16 @@ class AddEditNoteFragmentViewModel(private val databaseProvider: DatabaseProvide
         }
         return true
     }
+
+}
+class ADDEditModel(){
+    var id = -1
+
+    val title = ObservableField<String>()
+    val content = ObservableField<String>()
+
+    val color = ObservableField(NotesColor.Red)
+
+    val ediIsEnable = ObservableField(false)
 
 }

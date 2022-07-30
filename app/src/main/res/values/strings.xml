@@ -16,5 +16,12 @@
     <string name="notes_list_tag">Notes list</string>
     <string name="emergency_tag">Emergency</string>
     <string name="help_tag">Help</string>
+    <string name="clear_database_button_text">Clear database</string>
+    <string name="no_text">No</string>
+    <string name="yes_text">Yes</string>
+    <string name="cleared_toast_text">Cleared</string>
+    <string name="are_you_sure_text">Are You Sure?</string>
+    <string name="emergency">Emergency</string>
+    <string name="help_title">Help</string>
 
 </resources>

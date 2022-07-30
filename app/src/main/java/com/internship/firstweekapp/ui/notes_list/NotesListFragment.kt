@@ -50,7 +50,7 @@ class NotesListFragment : BaseFragment<NotesRecyclerBinding>(R.layout.notes_recy
 
         super.onResume()
         if(viewModel.direction.value != null)
-            viewModel.setList(viewModel.direction.value!!)
+            viewModel.setList()
     }
 
     private fun attachDeleteSwipe() {
@@ -117,31 +117,44 @@ class NotesListFragment : BaseFragment<NotesRecyclerBinding>(R.layout.notes_recy
     private fun setDrawerIconClick() {
         (requireActivity() as MainScreen).getNavigationView().setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.toList -> {}
-                R.id.toEmergency -> {}
-                R.id.toHelp -> {}
+                R.id.toList -> {
+                    navigate(NotesListFragmentDirections.toList())
+                    (requireActivity() as MainScreen).hideDrawer()
+                }
+                R.id.toEmergency -> {navigate(NotesListFragmentDirections.toEmergency())
+                    (requireActivity() as MainScreen).hideDrawer()}
+                R.id.toHelp -> {navigate(NotesListFragmentDirections.toHelp())
+                    (requireActivity() as MainScreen).hideDrawer()}
             }
             true
         }
+
     }
 
     private fun setToolbarItemClickedListener() {
+
         binding.toolbar.setOnMenuItemClickListener { it_main ->
+
             when (it_main.itemId) {
+
                 R.id.date -> {
-                    viewModel.sortBy.postValue(SortBy.Date)
+                    hideIcons()
+                    viewModel.sortBy.postValue(SortBy.id)
                     setDirections(it_main)
                 }
                 R.id.title -> {
-                    viewModel.sortBy.postValue(SortBy.Title)
+                    hideIcons()
+                    viewModel.sortBy.postValue(SortBy.title)
                     setDirections(it_main)
                 }
                 R.id.color -> {
-                    viewModel.sortBy.postValue(SortBy.Color)
+                    hideIcons()
+                    viewModel.sortBy.postValue(SortBy.color)
                     setDirections(it_main)
                 }
                 R.id.content -> {
-                    viewModel.sortBy.postValue(SortBy.Content)
+                    hideIcons()
+                    viewModel.sortBy.postValue(SortBy.content)
                     setDirections(it_main)
                 }
                 else -> {}
@@ -151,15 +164,22 @@ class NotesListFragment : BaseFragment<NotesRecyclerBinding>(R.layout.notes_recy
         }
     }
 
+    private fun hideIcons(){
+        binding.toolbar.menu.findItem(R.id.date).icon = null
+        binding.toolbar.menu.findItem(R.id.title).icon = null
+        binding.toolbar.menu.findItem(R.id.color).icon = null
+        binding.toolbar.menu.findItem(R.id.content).icon = null
+    }
+
     private fun setDirections(it_main: MenuItem) {
         when (viewModel.direction.value) {
-            Direction.Normal -> {
+            Direction.ASC -> {
                 it_main.icon = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_baseline_expand_less_24)
-                viewModel.direction.postValue(Direction.Reverse)
+                viewModel.direction.postValue(Direction.DESC)
             }
-            Direction.Reverse -> {
+            Direction.DESC -> {
                 it_main.icon = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_baseline_expand_more_24)
-                viewModel.direction.postValue(Direction.Normal)
+                viewModel.direction.postValue(Direction.ASC)
             }
             null -> {}
         }
