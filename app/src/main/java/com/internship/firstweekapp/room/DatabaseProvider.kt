@@ -12,7 +12,7 @@ class DatabaseProvider(val context: Context) {
         context,
         NotesDataBase::class.java, Constants.DATABASE_NAME
     )
-         .fallbackToDestructiveMigration()
+//         .fallbackToDestructiveMigration()
         .build()
 
 
@@ -28,8 +28,8 @@ class DatabaseProvider(val context: Context) {
         base.notesDao().update(note)
     }
 
-    fun getSortedBy(sortField: String, toString: String): ArrayList<NoteModel> {
-        return MMapper().toDomain(base.notesDao().getWithRaw(sortField, toString))
+    fun getSortedBy(sortField: String, direction: String): ArrayList<NoteModel> {
+        return MMapper().toDomain(base.notesDao().getWithRaw(sortField, direction))
     }
 
     fun deleteAll(note: Note) {
