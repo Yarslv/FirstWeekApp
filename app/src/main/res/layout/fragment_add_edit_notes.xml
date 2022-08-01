@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.internship.firstweekapp.util.AddOrEditFlag" />
+
+        <variable
+            name="viewModel"
+            type="com.internship.firstweekapp.ui.add_note.AddEditNoteFragmentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/notes_color_red_dark"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/save_menu"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:navigationIconTint="@color/white"
+            app:title="@{viewModel.isAddOrEdit == AddOrEditFlag.Add? @string/add_toolbar_title : @string/edit_toolbar_title}"
+            app:titleTextAppearance="@style/Toolbar"
+            app:titleTextColor="@color/white" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            app:boxBackgroundMode="none"
+            app:errorEnabled="true"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/enter_title_hint"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@={viewModel.model.title}"
+                android:textColor="#b0b0b0"
+                android:textSize="12sp"
+                tools:text="titltr\nhhh" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/titleDivider"
+            style="@style/Line"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/titleLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            app:boxBackgroundMode="none"
+            app:layout_constraintTop_toTopOf="@id/titleDivider">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top|start"
+                android:hint="@string/enter_content_hint"
+                android:inputType="textMultiLine"
+                android:text="@={viewModel.model.content}"
+                android:textColor="#b0b0b0"
+                android:textSize="12sp"
+                tools:text="sasksjglksdjskopdjfslk;jfm;dkldsjm;lkdmf;fdlhk,';lhg'df;lg\'d;gd;ghgfhgh]d\';df'gsdfk;ldsaf" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/contentDivider"
+            style="@style/Line"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/contentLayout" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/chooseColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/choose_color_text"
+            android:textColor="@color/gray_icon_color"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/contentDivider"
+            app:layout_constraintTop_toBottomOf="@id/contentDivider" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/colorRecycler"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/contentDivider"
+            app:layout_constraintTop_toBottomOf="@id/chooseColor"
+            tools:listitem="@layout/color_button_layout"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_height="wrap_content"/>
+
+
+        <View
+            android:id="@+id/colorDivider"
+            style="@style/Line"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/colorRecycler" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@={viewModel.model.ediIsEnable}"
+            android:text="@string/edit_is_enable_checkbox_text"
+            android:textColor="@color/gray_icon_color"
+            android:visibility="@{viewModel.isAddOrEdit == AddOrEditFlag.Add? View.VISIBLE : View.GONE}"
+            app:buttonTint="#009688"
+            app:layout_constraintStart_toStartOf="@id/colorDivider"
+            app:layout_constraintTop_toBottomOf="@id/colorDivider" />
+
+        <View
+            style="@style/Line"
+            android:layout_width="match_parent"
+            android:visibility="@{viewModel.isAddOrEdit == AddOrEditFlag.Add? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/checkbox" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

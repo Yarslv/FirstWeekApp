@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/toList"
+        android:title="@string/notes_list_tag"
+        android:icon="@drawable/ic_baseline_featured_play_list_24"
+        />
+
+    <item
+        android:id="@+id/toEmergency"
+        android:title="@string/emergency_tag"
+        android:icon="@drawable/ic_baseline_add_alert_24"
+        />
+    <item
+        android:id="@+id/toHelp"
+        android:title="@string/help_tag"
+        android:icon="@drawable/ic_baseline_live_help_24"
+        />
+</menu>

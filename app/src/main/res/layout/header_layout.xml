@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/notes_color_red_dark"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Color notes"
+            app:titleTextColor="@color/gray_icon_color"
+            app:titleTextAppearance="@style/Toolbar"
+            app:menu="@menu/drawer_burger"
+            app:navigationIcon="@drawable/ic_baseline_mail_outline_24"
+            app:layout_constraintTop_toTopOf="parent"
+            android:translationY="-2dp"
+            android:background="@color/drawer_bg_color"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
