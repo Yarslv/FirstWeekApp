@@ -1,6 +1,7 @@
 package com.internship.firstweekapp.arch.adapter
 
 import androidx.recyclerview.widget.DiffUtil
+import com.internship.firstweekapp.ui.card_list.item_model.CardSensorItem
 
 open class AbstractDiffCallback<E>(
     private val newList: List<E>,
@@ -16,13 +17,13 @@ open class AbstractDiffCallback<E>(
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return newList[newItemPosition] == oldList[oldItemPosition]
+        return (newList[newItemPosition] as CardSensorItem).id == (oldList[oldItemPosition] as CardSensorItem).id
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val new = newList.getOrNull(newItemPosition) as? AdapterContentElement ?: return false
-        val old = oldList.getOrNull(newItemPosition) as? AdapterContentElement ?: return false
-
+        val new = newList.getOrNull(newItemPosition) as? CardSensorItem ?: return false
+        val old = oldList.getOrNull(oldItemPosition) as? CardSensorItem ?: return false
         return new.areContentsTheSame(old)
     }
+
 }

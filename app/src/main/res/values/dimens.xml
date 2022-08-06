@@ -3,4 +3,16 @@
     <dimen name="dialog_dimen">500dp</dimen>
     <dimen name="dialog_textview_margin">20dp</dimen>
     <dimen name="text_size">10sp</dimen>
+    <dimen name="recycler_no_margin_top">0</dimen>
+    <dimen name="recycler_margin_top">30</dimen>
+    <dimen name="dropdown_item_padding">12dp</dimen>
+    <dimen name="image_width">125dp</dimen>
+    <dimen name="image_height">125dp</dimen>
+    <dimen name="item_side_margin">5dp</dimen>
+    <dimen name="item_height">200dp</dimen>
+    <dimen name="item_margin">10dp</dimen>
+    <dimen name="recycler_top_margin">10dp</dimen>
+    <dimen name="fab_margin">30dp</dimen>
+    <dimen name="text_input_layout_side_margin">5dp</dimen>
+    <dimen name="content_img_bottm_margin">5dp</dimen>
 </resources>

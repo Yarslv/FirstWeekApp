@@ -2,9 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/mainScreen2">
-    <activity
-        android:id="@+id/mainScreen2"
-        android:name="com.internship.firstweekapp.ui.main.MainScreen"
-        android:label="MainScreen" />
+    app:startDestination="@id/listFragment">
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.internship.firstweekapp.ui.card_list.ListFragment"
+        android:label="ListFragment" >
+        <action
+            android:id="@+id/action_listFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCardFragment"
+        android:name="com.internship.firstweekapp.ui.add_card.AddCardFragment"
+        android:label="AddCardFragment" />
 </navigation>
