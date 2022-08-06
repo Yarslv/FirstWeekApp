@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="cardModel"
-            type="com.internship.firstweekapp.ui.card_list.CardItem" />
+            type="com.internship.firstweekapp.ui.card_list.item_model.CardSensorItem" />
 
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="10dp">
+        android:layout_height="@dimen/item_height"
+        android:layout_margin="@dimen/item_margin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -21,24 +22,26 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/type"
+                setCardIcon="@{cardModel.type}"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="5dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="@id/textView"
+                android:layout_marginStart="@dimen/item_side_margin"
                 app:layout_constraintBottom_toBottomOf="@id/textView"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintStart_toStartOf="parent"
-                setCardIcon="@{cardModel.type}"/>
+                app:layout_constraintTop_toTopOf="@id/textView" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text = "@{cardModel.roomName}"
+                android:maxLines="1"
+                android:text="@{cardModel.roomName}"
+                android:textAlignment="center"
                 android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@id/type"
                 app:layout_constraintEnd_toStartOf="@id/delete"
+                app:layout_constraintStart_toEndOf="@id/type"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Kitchen" />
 
@@ -46,42 +49,41 @@
                 android:id="@+id/delete"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginEnd="5dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="@id/textView"
+                android:layout_marginEnd="@dimen/item_side_margin"
+                android:onClick="@{() -> cardModel.deleteClick()}"
                 app:layout_constraintBottom_toBottomOf="@id/textView"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textView"
                 app:srcCompat="@drawable/ic_baseline_delete_24" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/contentImageView"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                setCardType="@{cardModel.type}"
                 setCardImage="@{cardModel.subtype}"
+                setCardType="@{cardModel.type}"
                 setCardValue="@{cardModel.value}"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="@dimen/image_width"
+                android:layout_height="@dimen/image_height"
+                android:layout_marginBottom="@dimen/content_img_bottm_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/value"
+                setCardImage="@{cardModel.subtype}"
+                setCardType="@{cardModel.type}"
+                setCardValue="@{cardModel.value}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                setCardTypee="@{cardModel.type}"
-                setCardImagee="@{cardModel.subtype}"
-                setCardValuee="@{cardModel.value}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/contentImageView"
                 app:layout_constraintBottom_toBottomOf="@id/contentImageView"
-                tools:text="0.34"/>
-
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/contentImageView"
+                tools:text="0.34" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </com.google.android.material.card.MaterialCardView>
 </layout>

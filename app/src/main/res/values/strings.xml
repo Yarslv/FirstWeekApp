@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">FirstWeekApp</string>
+    <string name="location_hint">Location</string>
+    <string name="sensor_type_field_hint">Sensor Type</string>
+    <string name="sensor_subtype_field_hint">Sensor Subtype</string>
+    <string name="add_button_text">Add</string>
+    <string name="no_connection_msg">No connection or something else</string>
+    <string name="fab_description">Add Local Sensor</string>
 
 </resources>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.internship.firstweekapp.ui.add_card.AddCardFragmentViewModel" />
@@ -9,8 +11,116 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_input_layout_side_margin"
+            android:layout_marginEnd="@dimen/text_input_layout_side_margin"
+            android:hint="@string/location_hint"
+            android:setErrorMessage="@{viewModel.model.nameError}"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineTop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineTop">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={viewModel.roomName}"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sensorType"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_input_layout_side_margin"
+            android:layout_marginEnd="@dimen/text_input_layout_side_margin"
+            android:hint="@string/sensor_type_field_hint"
+            android:setErrorMessage="@{viewModel.model.typeError}"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineTypeSubType"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineTop">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/typeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="@{() -> viewModel.hideKeyboard()}"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sensorSubtype"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_input_layout_side_margin"
+            android:layout_marginEnd="@dimen/text_input_layout_side_margin"
+            android:hint="@string/sensor_subtype_field_hint"
+            android:setErrorMessage="@{viewModel.model.subtypeError}"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineTypeSubType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/guidelineTop">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/subTypeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="@{() -> viewModel.hideKeyboard()}"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.navigate()}"
+            android:text="@string/add_button_text"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guidelineBottom" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTypeSubType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

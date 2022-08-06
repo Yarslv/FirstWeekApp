@@ -1,7 +1,6 @@
-package com.internship.firstweekapp.ui.card_list
+package com.internship.firstweekapp
 
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
@@ -14,13 +13,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.request.RequestListener
+import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.textview.MaterialTextView
-import com.internship.firstweekapp.R
-import com.internship.firstweekapp.arch.ext.bindGifView
-import com.internship.firstweekapp.ui.card_list.adapter.CardAdapter
-import kotlinx.coroutines.coroutineScope
+import com.internship.firstweekapp.ui.card_list.item_model.CardSensorItem
+import com.internship.firstweekapp.util.enums.Error
+import com.internship.firstweekapp.ui.card_list.recycler.CardAdapter
+import com.internship.firstweekapp.util.enums.SensorSubtype
+import com.internship.firstweekapp.util.enums.SensorType
+import com.internship.firstweekapp.util.enums.SwitchValue
 
 fun Fragment.navigate(dir: NavDirections) {
     findNavController().navigate(dir)
@@ -31,11 +32,30 @@ fun Fragment.navigateBack() {
     findNavController().navigateUp()
 }
 
-@BindingAdapter(value =  ["setList", "setList2"], requireAll = true)
-fun RecyclerView.setList(arr: ArrayList<CardItem>, arr2: List<CardItem>) {
-    arr.addAll(arr2)
-    Log.d("recwWW", arr.toArray().toString())
-    (adapter as CardAdapter).setContent(arr)
+@BindingAdapter("android:setErrorMessage")
+fun TextInputLayout.setErrorMessage(errorType: Error) {
+
+    error = when (errorType) {
+        Error.EmptyTextFiled -> {
+            "Write room name!"
+        }
+        Error.NoError -> {
+            ""
+        }
+        Error.EmptyTypeDropDownField -> {
+            "Select type!"
+        }
+        Error.EmptySubtypeDropDownField -> {
+            "Select subtype!"
+        }
+    }
+
+}
+
+
+@BindingAdapter(value = ["setRepositoryList", "setLocalList"], requireAll = false)
+fun RecyclerView.setList(repositoryList: List<CardSensorItem>, localList: List<CardSensorItem>) {
+    (adapter as CardAdapter).setContent(repositoryList + localList)
 }
 
 @BindingAdapter("setCardIcon")
@@ -59,7 +79,7 @@ fun AppCompatImageView.setCardIcon(type: SensorType) {
 }
 
 
-@BindingAdapter(value = ["setCardTypee", "setCardImagee", "setCardValuee"], requireAll = true)
+@BindingAdapter(value = ["setCardType", "setCardImage", "setCardValue"], requireAll = true)
 fun MaterialTextView.setCardText(type: SensorType, subtype: SensorSubtype, value: String) {
 
     when (subtype) {
@@ -92,24 +112,13 @@ fun AppCompatImageView.setCardImage(type: SensorType, subtype: SensorSubtype, va
     when (subtype) {
         SensorSubtype.switch -> {
             visibility = View.VISIBLE
-            when (SwitchValue.valueOf(value)) {
-                SwitchValue.on -> {
-                    setImageDrawable(
-                        ContextCompat.getDrawable(
-                            context,
-                            R.drawable.ic_baseline_toggle_on_24
-                        )
-                    )
-                }
-                SwitchValue.off -> {
-                    setImageDrawable(
-                        ContextCompat.getDrawable(
-                            context,
-                            R.drawable.ic_baseline_toggle_off_24
-                        )
-                    )
-                }
-            }
+            setDrawableBySwitch(
+                this,
+                SwitchValue.valueOf(value),
+                R.drawable.ic_baseline_toggle_on_24,
+                R.drawable.ic_baseline_toggle_off_24
+            )
+
         }
         SensorSubtype.onetime -> {
             visibility = View.VISIBLE
@@ -144,23 +153,22 @@ fun AppCompatImageView.setCardImage(type: SensorType, subtype: SensorSubtype, va
                         }).into(this)
                 }
                 SensorType.Sound -> {
-                    when (SwitchValue.valueOf(value)) {
-                        SwitchValue.on -> setImageDrawable(
-                            ContextCompat.getDrawable(
-                                context,
-                                R.drawable.ic_baseline_volume_up_24
-                            )
-                        )
-                        SwitchValue.off -> setImageDrawable(
-                            ContextCompat.getDrawable(
-                                context,
-                                R.drawable.ic_baseline_volume_off_24
-                            )
-                        )
-                    }
+                    setDrawableBySwitch(
+                        this,
+                        SwitchValue.valueOf(value),
+                        R.drawable.ic_baseline_volume_up_24,
+                        R.drawable.ic_baseline_volume_off_24
+                    )
                 }
+                SensorType.Light -> {
+                    setDrawableBySwitch(
+                        this,
+                        SwitchValue.valueOf(value),
+                        R.drawable.ic_baseline_wb_sunny_24,
+                        R.drawable.ic_baseline_nightlight_24
+                    )
 
-                SensorType.Light -> {}
+                }
             }
         }
         SensorSubtype.level -> {
@@ -176,4 +184,29 @@ fun AppCompatImageView.setCardImage(type: SensorType, subtype: SensorSubtype, va
             }
         }
     }
+}
+
+fun setDrawableBySwitch(
+    appCompatImageView: AppCompatImageView,
+    switch: SwitchValue,
+    onImg: Int,
+    offImg: Int
+) {
+    appCompatImageView.setImageDrawable(
+        when (switch) {
+            SwitchValue.on -> {
+
+                ContextCompat.getDrawable(
+                    appCompatImageView.context,
+                    onImg
+                )
+            }
+            SwitchValue.off -> {
+                ContextCompat.getDrawable(
+                    appCompatImageView.context,
+                    offImg
+                )
+            }
+        }
+    )
 }
