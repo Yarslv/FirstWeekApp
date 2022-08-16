@@ -1,4 +1,26 @@
 <resources>
     <string name="app_name">FirstWeekApp</string>
+    <string name="apply_button_text">Apply</string>
+    <string name="save_button_text">Save</string>
+    <string name="crop_button_text">Crop</string>
+    <string name="normal_filter_name">Normal</string>
+    <string name="invert_filter_name">Invert</string>
+    <string name="rgb_to_brg_filter_name">RGB to BRG</string>
+    <string name="sepia_filter_name">Sepia</string>
+    <string name="black_and_white_filter_name"><![CDATA[Black & White]]></string>
+    <string name="polaroid_filter_name">Polaroid</string>
+    <string name="white_to_alpha">White to Alpha</string>
+    <string name="old_filter_name">Old</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="choose_photo_resource_text">Choose photo resource</string>
+    <string name="filename">%s%s</string>
+    <string name="image_path">%s/%s</string>
+    <string name="ext_and_date">%s_%s</string>
+    <string name="saved">Saved: %s</string>
+    <string name="crop">Crop</string>
+    <string name="brightness">Brightness</string>
+    <string name="contrast">Contrast</string>
+    <string name="shade">Shade</string>
 
 </resources>

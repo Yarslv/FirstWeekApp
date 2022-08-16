@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.internship.firstweekapp.ui.photo_editor.EditorAction" />
+
+        <variable
+            name="viewModel"
+            type="com.internship.firstweekapp.ui.photo_editor.PhotoEditorFragmentViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tabLayout"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <com.canhub.cropper.CropImageView
+                android:id="@+id/cropView"
+                setBitmap="@{viewModel.image}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.action == EditorAction.Crop ? View.VISIBLE : View.GONE}" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image"
+                setBitmap="@{viewModel.image}"
+                setBrightness="@{viewModel.brightnessValue}"
+                setContrast="@{viewModel.contrastValue}"
+                setFilter="@{viewModel.shade}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.action == EditorAction.Crop ? View.GONE : View.VISIBLE}" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            setPosition="@={viewModel.action}"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toTopOf="@id/bottom">
+
+            <com.google.android.material.tabs.TabItem
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+
+                android:text="@string/crop"
+                android:textSize="20sp" />
+
+            <com.google.android.material.tabs.TabItem
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+
+                android:text="@string/brightness"
+                android:textSize="20sp" />
+
+            <com.google.android.material.tabs.TabItem
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+
+                android:text="@string/contrast"
+                android:textSize="20sp" />
+
+            <com.google.android.material.tabs.TabItem
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+
+                android:text="@string/shade"
+                android:textSize="20sp" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/brightnessSlider"
+            setSliderPosition="@={viewModel.brightnessValue}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:valueFrom="-200"
+            android:valueTo="200"
+            android:visibility="@{viewModel.action == EditorAction.Brightness ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/bottomBottom"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/contrastSlider"
+            setSliderPosition="@={viewModel.contrastValue}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:valueFrom="0"
+            android:valueTo="2"
+            android:visibility="@{viewModel.action == EditorAction.Contrast ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/bottomBottom"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shadeRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:adapter="@{viewModel.adapter}"
+            android:orientation="horizontal"
+            android:visibility="@{viewModel.action == EditorAction.Shade ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="@id/bottomBottom"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout"
+            tools:listitem="@layout/shade_filter_item" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottomBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.90" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/applyButton"
+            setLabel="@{viewModel.btnState}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.statesButtonClick()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bottomBottom" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

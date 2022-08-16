@@ -2,9 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/mainScreen2">
-    <activity
-        android:id="@+id/mainScreen2"
-        android:name="com.internship.firstweekapp.ui.main.MainScreen"
-        android:label="MainScreen" />
+    app:startDestination="@id/choosePhotoFragment">
+    <fragment
+        android:id="@+id/choosePhotoFragment"
+        android:name="com.internship.firstweekapp.ui.choose_photo.ChoosePhotoFragment"
+        android:label="ChoosePhotoFragment" >
+        <action
+            android:id="@+id/action_choosePhotoFragment_to_photoEditorFragment"
+            app:destination="@id/photoEditorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoEditorFragment"
+        android:name="com.internship.firstweekapp.ui.photo_editor.PhotoEditorFragment"
+        android:label="PhotoEditorFragment" />
 </navigation>
