@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.internship.firstweekapp.ui.result_list.RecordListItemModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/playStopIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:onClick="@{() -> model.playPauseClick()}"
+            android:tint="@color/purple_500"
+            app:id="@{model.record.id}"
+            app:isPlay="@{model.isPlayed()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:player="@{model.playerProvider}"
+            app:srcCompat="@drawable/ic_baseline_play_circle_24"
+            app:url="@{model.record.file}" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            app:constraint_referenced_ids="genSpSspTextView, image"
+            app:flow_verticalGap="5dp"
+            android:onClick="@{() -> model.navigate()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/playStopIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/genSpSspTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{@string/concate_name(model.record.gen, model.record.sp, model.record.ssp)}"
+            tools:text="Hofdopkldmlsm nfsklfdlsk sdklskfldfkl" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            tools:ignore="MissingConstraints" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

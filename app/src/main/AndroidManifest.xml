@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.internship.firstweekapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".InternshipApp"
         android:allowBackup="false"
@@ -15,7 +17,8 @@
 
         <activity
             android:name=".ui.main.MainScreen"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
