@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">FirstWeekApp</string>
+    <string name="add_category_button_text">Add</string>
+    <string name="retry_button_text">Retry</string>
+    <string name="return_to_non_mock_call_button_text">Return to non mock call</string>
+    <string name="use_mock_button_text">Use mock</string>
 
 </resources>

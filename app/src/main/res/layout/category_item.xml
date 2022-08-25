@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="com.internship.firstweekapp.ui.memes_list.category_list.CategoryModel" />
+
+    </data>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:backgroundTint="#aed185"
+        app:strokeColor="#728a65"
+        android:textColor="#728a65"
+        android:text="@{model.text}">
+
+    </com.google.android.material.button.MaterialButton>
+</layout>

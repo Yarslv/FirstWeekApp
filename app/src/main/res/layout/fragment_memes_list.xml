@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.internship.firstweekapp.ui.memes_list.MemesListFragmentViewModel" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#383838">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addButton"
+                style="@style/ButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_category_button_text"
+                android:visibility="@{viewModel.model.isError() ? View.GONE : viewModel.model.isLoad() ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adapter="@{viewModel.categoriesAdapter}"
+                setItems="@{viewModel.model.categoryItems}"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="@id/addButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="@{viewModel.model.isError() ? View.GONE : viewModel.model.isLoad() ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toEndOf="@id/addButton"
+                app:layout_constraintTop_toTopOf="@id/addButton"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                scope="@{viewModel.scope}"
+                setItems="@{viewModel.model.items}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adapter="@{viewModel.cardAdapter}"
+                android:maxLength="24"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/addButton" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{viewModel.model.error}"
+                android:textColor="#b3c1a8"
+                android:visibility="@{viewModel.model.isError() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toTopOf="@+id/flow" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="retryButton, mockButton"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/retryButton"
+                style="@style/ButtonStyle"
+                android:text="@string/retry_button_text"
+                android:visibility="@{viewModel.model.isError() ? View.VISIBLE : View.GONE}"
+                android:onClick="@{() -> viewModel.refresh()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/returnToNonMockButton"
+                style="@style/ButtonStyle"
+                android:text="@string/return_to_non_mock_call_button_text"
+                android:visibility="@{viewModel.model.isMock() ? View.VISIBLE : View.GONE}"
+                android:onClick="@{() -> viewModel.returnToNonMock()}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mockButton"
+                style="@style/ButtonStyle"
+                android:text="@string/use_mock_button_text"
+                android:visibility="@{viewModel.model.isError() ? View.VISIBLE : View.GONE}"
+                android:onClick="@{() -> viewModel.useMock()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="@{viewModel.model.isLoad() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

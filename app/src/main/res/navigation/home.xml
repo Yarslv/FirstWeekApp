@@ -2,9 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home"
-    app:startDestination="@id/mainScreen2">
-    <activity
-        android:id="@+id/mainScreen2"
-        android:name="com.internship.firstweekapp.ui.main.MainScreen"
-        android:label="MainScreen" />
+    app:startDestination="@id/memesListFragment">
+    <fragment
+        android:id="@+id/memesListFragment"
+        android:name="com.internship.firstweekapp.ui.memes_list.MemesListFragment"
+        android:label="MemesListFragment" />
 </navigation>
