@@ -7,7 +7,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.internship.firstweekapp.arch.BaseViewModel
 import com.internship.firstweekapp.paging.MemePageSource
-import com.internship.firstweekapp.retrofit.RetrofitClient
+import com.internship.firstweekapp.retrofit.RetrofitClientImpl
 import com.internship.firstweekapp.retrofit.Retrofits
 import com.internship.firstweekapp.ui.memes_list.category_list.CategoriesAdapter
 import com.internship.firstweekapp.ui.memes_list.category_list.CategoryClick
@@ -15,15 +15,15 @@ import com.internship.firstweekapp.ui.memes_list.recycler.CardRecyclerAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MemesListFragmentViewModel(val retrofitClient: RetrofitClient) : BaseViewModel(),
+class MemesListFragmentViewModel(val retrofitClient: RetrofitClientImpl) : BaseViewModel(),
     CategoryClick {
 
     val model = MemeListModel()
-    var memePageSource = MemePageSource(retrofitClient)
+    private var memePageSource = MemePageSource(retrofitClient)
 
-    var listData = Pager(PagingConfig(pageSize = 24)) {
+    private var listData = Pager(PagingConfig(pageSize = 24)) {
         memePageSource
-        MemePageSource(retrofitClient).apply {
+        .apply {
             setFilterText(model.textFilter.get().toString())
         }
     }.flow
@@ -62,7 +62,7 @@ class MemesListFragmentViewModel(val retrofitClient: RetrofitClient) : BaseViewM
     }
 
     fun useMock() {
-        model.isMock.set(true)
+        retrofitClient.isMock.set(true)
         retrofitClient.retrofit = Retrofits.RetrofitWithMock.create()
         recreateSources()
     }
@@ -74,14 +74,16 @@ class MemesListFragmentViewModel(val retrofitClient: RetrofitClient) : BaseViewM
     }
 
     fun returnToNonMock() {
-        model.isMock.set(false)
+        retrofitClient.isMock.set(false)
         retrofitClient.retrofit = Retrofits.RetrofitWithoutMock.create()
         recreateSources()
     }
 
     fun refresh() {
         listData = Pager(PagingConfig(pageSize = 24)) {
-            memePageSource
+            memePageSource.apply {
+                setFilterText(model.textFilter.get().toString())
+            }
         }.flow.apply {
             viewModelScope.launch(Dispatchers.IO) {
                 collect {
@@ -93,5 +95,6 @@ class MemesListFragmentViewModel(val retrofitClient: RetrofitClient) : BaseViewM
 
     override fun onClick(text: String) {
         model.textFilter.set(text)
+        refresh()
     }
 }

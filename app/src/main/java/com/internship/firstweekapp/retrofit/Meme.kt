@@ -1,7 +1,9 @@
 package com.internship.firstweekapp.retrofit
 
 import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Meme(
     @SerializedName("ID")
     val id: Int,
@@ -12,7 +14,7 @@ data class Meme(
     @SerializedName("name")
     val name: String,
     @SerializedName("rank")
-    val rank: Int,
+    val rank: Int = -1,
     @SerializedName("tags")
     val tags: String,
     @SerializedName("topText")

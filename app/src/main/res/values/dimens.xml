@@ -3,4 +3,6 @@
     <dimen name="dialog_dimen">500dp</dimen>
     <dimen name="dialog_textview_margin">20dp</dimen>
     <dimen name="text_size">10sp</dimen>
+    <dimen name="meme_text_size">24sp</dimen>
+    <dimen name="card_meme_margin">10dp</dimen>
 </resources>

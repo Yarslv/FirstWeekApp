@@ -3,11 +3,11 @@ package com.internship.firstweekapp.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.internship.firstweekapp.retrofit.Meme
-import com.internship.firstweekapp.retrofit.RetrofitClient
+import com.internship.firstweekapp.retrofit.RetrofitClientImpl
 import retrofit2.HttpException
 import java.io.IOException
 
-class MemePageSource(private val retrofitClient: RetrofitClient) : PagingSource<Int, Meme>() {
+class MemePageSource(private val retrofitClient: RetrofitClientImpl) : PagingSource<Int, Meme>() {
 
     var filter = ""
 

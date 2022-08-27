@@ -1,6 +1,6 @@
 package com.internship.firstweekapp.di
 
-import com.internship.firstweekapp.retrofit.RetrofitClient
+import com.internship.firstweekapp.retrofit.RetrofitClientImpl
 import com.internship.firstweekapp.ui.main.MainViewModel
 import com.internship.firstweekapp.ui.memes_list.MemesListFragmentViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -11,5 +11,5 @@ val viewModelModule = module {
     viewModel { MemesListFragmentViewModel(get()) }
 }
 val retrofitModule = module{
-    single { RetrofitClient() }
+    single { RetrofitClientImpl() }
 }

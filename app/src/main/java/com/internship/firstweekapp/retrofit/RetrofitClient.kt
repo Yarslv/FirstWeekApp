@@ -1,11 +1,9 @@
 package com.internship.firstweekapp.retrofit
 
-class RetrofitClient {
+import androidx.databinding.ObservableBoolean
 
-    var retrofit = Retrofits.RetrofitWithMock.create()
-
-    suspend fun getAllMemeses(page: Int): Array<Meme> {
-        return retrofit.getAllMemes(page).data
-    }
+interface RetrofitClient {
+    val isMock: ObservableBoolean
+    var retrofit: AlphaMemeMakerInterface
+    suspend fun getAllMemeses(page: Int): Array<Meme>
 }
-

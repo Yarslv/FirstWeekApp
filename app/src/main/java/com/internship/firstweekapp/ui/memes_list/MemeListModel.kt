@@ -9,16 +9,12 @@ import com.internship.firstweekapp.ui.memes_list.category_list.CategoryModel
 class MemeListModel {
     var textFilter = ObservableField("")
 
-    val isMock = ObservableBoolean(true)
-
     val items = ObservableField<PagingData<Meme>?>()
     val categoryItems = ObservableField(
         arrayListOf(
-            CategoryModel("All"),
-            CategoryModel("Wolf"),
-            CategoryModel("GGG"),
-            CategoryModel("Dogs"),
-            CategoryModel("Pepe")
+            CategoryModel( "All", "", true),
+            CategoryModel( "GGG", "ggg", isCurrentlyUsed = false),
+            CategoryModel( "Pepe", "pepe", isCurrentlyUsed = false)
         )
     )
 

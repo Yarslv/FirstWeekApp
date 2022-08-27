@@ -20,13 +20,9 @@ import kotlinx.coroutines.launch
 
 @BindingAdapter(value = ["setItems", "scope"], requireAll = false)
 fun RecyclerView.setItems(list: PagingData<Meme>?, scope: CoroutineScope) {
-    Log.d("recw", "set0")
     scope.launch {
-        Log.d("recw", "set1")
         if (list != null) {
-            Log.d("recw", "set2")
             (adapter as CardRecyclerAdapter).submitData(list)
-
         }
         else{
             (adapter as CardRecyclerAdapter)

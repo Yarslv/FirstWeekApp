@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 
 class CategoriesDiffUtil : DiffUtil.ItemCallback<CategoryModel>() {
     override fun areItemsTheSame(oldItem: CategoryModel, newItem: CategoryModel): Boolean {
-        return oldItem.text == newItem.text
+        return oldItem.name == newItem.name
     }
 
     override fun areContentsTheSame(oldItem: CategoryModel, newItem: CategoryModel): Boolean {

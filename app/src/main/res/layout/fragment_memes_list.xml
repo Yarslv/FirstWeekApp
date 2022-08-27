@@ -17,36 +17,24 @@
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#383838">
+        android:background="@color/mine_shaft">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/addButton"
-                style="@style/ButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_category_button_text"
-                android:visibility="@{viewModel.model.isError() ? View.GONE : viewModel.model.isLoad() ? View.GONE : View.VISIBLE}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
             <androidx.recyclerview.widget.RecyclerView
-
+                android:id="@+id/categoriesRecycler"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:adapter="@{viewModel.categoriesAdapter}"
                 setItems="@{viewModel.model.categoryItems}"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="@id/addButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:visibility="@{viewModel.model.isError() ? View.GONE : viewModel.model.isLoad() ? View.GONE : View.VISIBLE}"
-                app:layout_constraintStart_toEndOf="@id/addButton"
-                app:layout_constraintTop_toTopOf="@id/addButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -56,16 +44,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adapter="@{viewModel.cardAdapter}"
-                android:maxLength="24"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/addButton" />
+                app:layout_constraintTop_toBottomOf="@id/categoriesRecycler" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@{viewModel.model.error}"
-                android:textColor="#b3c1a8"
+                android:textColor="@color/rainee"
                 android:visibility="@{viewModel.model.isError() ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toTopOf="@+id/flow" />
 
@@ -91,7 +78,7 @@
                 android:id="@+id/returnToNonMockButton"
                 style="@style/ButtonStyle"
                 android:text="@string/return_to_non_mock_call_button_text"
-                android:visibility="@{viewModel.model.isMock() ? View.VISIBLE : View.GONE}"
+                android:visibility="@{viewModel.retrofitClient.isMock() ? View.VISIBLE : View.GONE}"
                 android:onClick="@{() -> viewModel.returnToNonMock()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
