@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="highland">#728a65</color>
+    <color name="feijoa">#aed185</color>
+    <color name="rio_grande">#cdcd00</color>
+    <color name="olive">#808000</color>
+    <color name="rainee">#b3c1a8</color>
+    <color name="beryl_green">#d1e1bd</color>
+    <color name="mine_shaft">#383838</color>
 </resources>
