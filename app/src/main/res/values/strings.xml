@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">FirstWeekApp</string>
+    <string name="theme_text">Theme</string>
+    <string name="language">Language:</string>
+    <string name="error_msg">Unknown error!</string>
+    <string name="enter_location_here">Enter location here</string>
+    <string name="add_location">ADD LOCATION</string>
+    <string name="ukrainian">Ukrainian</string>
+    <string name="english">English</string>
+    <string name="swipe_item_for_remove">Swipe item for remove</string>
+    <string name="night_mode">Night Mode</string>
+    <string name="notifications">Notifications:</string>
+    <string name="show_alerts">Show Alerts</string>
+    <string name="information">Information:</string>
+    <string name="temp">Temp</string>
+    <string name="humid">Humid</string>
+    <string name="date">Date</string>
+    <string name="wind">Wind</string>
+    <string name="drag_item_below_and_vice_versa">Drag item below and vice versa</string>
+    <string name="no_info_for_show">No info for show</string>
+    <string name="no_empty_msg">Not be empty!</string>
+    <string name="unknown_loc_msg">Unknown Location!</string>
 
 </resources>

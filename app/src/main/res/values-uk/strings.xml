@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FirstWeekApp</string>
+    <string name="theme_text">Тема</string>
+    <string name="language">Мова:</string>
+    <string name="error_msg">Невідома помилка!</string>
+    <string name="enter_location_here">Введіть локацію сюди</string>
+    <string name="add_location">ДОДАТИ МІСЦЕ</string>
+    <string name="ukrainian">Українська</string>
+    <string name="english">Англійська</string>
+    <string name="swipe_item_for_remove">Свайпніть щоб видалити</string>
+    <string name="night_mode">Нічний режим</string>
+    <string name="notifications">Сповіщення:</string>
+    <string name="show_alerts">Показувати сповіщення</string>
+    <string name="information">Інформація:</string>
+    <string name="temp">Темп</string>
+    <string name="humid">Волог</string>
+    <string name="date">Дата</string>
+    <string name="wind">Вітер</string>
+    <string name="drag_item_below_and_vice_versa">Перетягніть елементи туди сюди</string>
+    <string name="no_info_for_show">Нема що показати</string>
+    <string name="no_empty_msg">Не може бутии пустим!</string>
+    <string name="unknown_loc_msg">Невідома локація!</string>
+
+</resources>

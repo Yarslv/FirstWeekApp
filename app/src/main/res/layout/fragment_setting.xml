@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.internship.firstweekapp.ui.tabs.setting.SettingFragmentViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/themeTextView"
+            style="@style/GrayTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/percentGuideline05"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/theme_text" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/themeSwitch"
+            android:checked="@={viewModel.nightMode}"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/themeTextView"
+            app:layout_constraintStart_toStartOf="@id/percentGuideline15" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SwitchText"
+            android:text="@string/night_mode"
+            tools:text="Night Mode"
+            app:layout_constraintBaseline_toBaselineOf="@id/themeSwitch"
+            app:layout_constraintStart_toEndOf="@id/themeSwitch" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/notificationTextView"
+            style="@style/GrayTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/percentGuideline05"
+            app:layout_constraintTop_toBottomOf="@id/themeSwitch"
+            android:text="@string/notifications"
+            tools:text="Notifications:" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/notificationSwitch"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/notificationTextView"
+            app:layout_constraintStart_toStartOf="@id/percentGuideline15" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SwitchText"
+            tools:text="Show Alerts"
+            android:text="@string/show_alerts"
+            android:clickable="false"
+            app:layout_constraintBaseline_toBaselineOf="@id/notificationSwitch"
+            app:layout_constraintStart_toEndOf="@id/notificationSwitch" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/languageTextView"
+            style="@style/GrayTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/percentGuideline05"
+            app:layout_constraintTop_toBottomOf="@id/notificationSwitch"
+            android:text="@string/language"
+            tools:text="Language:" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/switchLanguageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SwitchText"
+            android:onClick="@{() -> viewModel.navigateToLanguageFragment()}"
+            tools:text="English"
+            setLanguage="@{viewModel.currentLang}"
+            app:layout_constraintTop_toBottomOf="@id/languageTextView"
+            app:layout_constraintStart_toEndOf="@id/percentGuideline15" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/informationTextView"
+            style="@style/GrayTextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/percentGuideline05"
+            app:layout_constraintTop_toBottomOf="@id/switchLanguageTextView"
+            android:text="@string/information"
+            tools:text="Information:" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/activeFilterChipsGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/informationTextView"
+            app:layout_constraintStart_toEndOf="@id/percentGuideline15">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/temperatureChip"
+                android:text="@string/temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/humidChip"
+                android:text="@string/humid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/nonactiveFilterChipsGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/dragItemTextView"
+            app:layout_constraintStart_toEndOf="@id/percentGuideline15">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/windChip"
+                android:text="@string/wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/dateChip"
+                android:text="@string/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/dragItemTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/SwitchText"
+            android:text="@string/drag_item_below_and_vice_versa"
+            tools:text="Drag item below and vice versa"
+            app:layout_constraintTop_toBottomOf="@id/activeFilterChipsGroup"
+            app:layout_constraintStart_toEndOf="@id/percentGuideline05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/percentGuideline05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/percentGuideline15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

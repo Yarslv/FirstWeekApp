@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home"
+    app:startDestination="@id/settingFragment2">
+    <fragment
+        android:id="@+id/settingFragment2"
+        android:name="com.internship.firstweekapp.ui.tabs.setting.SettingFragment"
+        android:label="SettingFragment" >
+        <action
+            android:id="@+id/action_settingFragment2_to_chooseLanguageFragment"
+            app:destination="@id/chooseLanguageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseLanguageFragment"
+        android:name="com.internship.firstweekapp.ui.choose_language.ChooseLanguageFragment"
+        android:label="ChooseLanguageFragment" />
+</navigation>
