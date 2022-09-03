@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home"
+    app:startDestination="@id/citiesListFragment">
+
+
+    <fragment
+        android:id="@+id/citiesListFragment"
+        android:name="com.internship.firstweekapp.ui.tabs.cities_list.CitiesListFragment"
+        android:label="CitiesListFragment" >
+        <action
+            android:id="@+id/action_citiesListFragment_to_addLocationFragment"
+            app:destination="@id/addLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLocationFragment"
+        android:name="com.internship.firstweekapp.ui.add_location.AddLocationFragment"
+        android:label="AddLocationFragment" />
+</navigation>

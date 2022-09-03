@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.internship.firstweekapp.ui.forecast.ForestFragmentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cityCountryNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="city: Kiyv, Ukraine" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/coordinateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/cityCountryNameTextView"
+            tools:text="50.42927, 30.54076" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:adapter="@{viewModel.adapter}"
+
+            app:layout_constraintTop_toBottomOf="@id/coordinateTextView"
+            tools:listitem="@layout/forecast_recycler_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.internship.firstweekapp.ui.tabs.user_city_info.UserCityInfoFragmentViewModel" />
+
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:flow_verticalGap="10dp"
+            android:visibility="@{viewModel.isSetHomeCity() ? View.VISIBLE : View.GONE}"
+            app:constraint_referenced_ids="cityInfoTextView, temperatureTextView, image, humidityWindSpeedTextView, timeTextView" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cityInfoTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isSetHomeCity() ? View.VISIBLE : View.GONE}"
+            tools:text="fkfkkfkfkf\nlklfkdlkfl\nlsdklskdlskdl" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/temperatureTextView"
+            android:textSize="36sp"
+            android:gravity="center"
+            android:text="@{Double.toString(viewModel.wheatherData.tempC)}"
+            tools:text="+34"
+            android:visibility="@{viewModel.isSetHomeCity() ? View.VISIBLE : View.GONE}"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            setImage="@{viewModel.wheatherData.condition.icon}"
+            android:layout_width="match_parent"
+            app:layout_constraintDimensionRatio="1:1"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.isSetHomeCity() ? View.VISIBLE : View.GONE}"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/humidityWindSpeedTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isSetHomeCity() ? View.VISIBLE : View.GONE}"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/timeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="36sp"
+            android:text="@{viewModel.wheatherData.lastUpdated}"
+            android:visibility="@{viewModel.isSetHomeCity() ? View.VISIBLE : View.GONE}"
+            tools:text="12:24"
+            tools:ignore="MissingConstraints" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            style="@style/GrayTextName"
+            android:text="@string/no_info_for_show"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="@{viewModel.isSetHomeCity() ? View.GONE : View.VISIBLE}"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

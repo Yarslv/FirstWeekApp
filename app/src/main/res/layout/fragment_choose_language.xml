@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.internship.firstweekapp.ui.choose_language.ChooseLanguageFragmentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/langLabel"
+            android:layout_width="match_parent"
+            style="@style/GrayTextName"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/language"
+            android:layout_height="wrap_content"
+
+            />
+
+        <RadioGroup
+            setLanguage="@={viewModel.language}"
+            app:layout_constraintTop_toBottomOf="@id/langLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/UK"
+                android:text="@string/ukrainian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/EN"
+                android:text="@string/english"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
